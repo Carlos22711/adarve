@@ -25,20 +25,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 5%;
+    padding: 1.2rem 5%;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 100;
-    background: rgba(249, 249, 249, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background: #F9F9F9;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
 }
 
 .navbar .logo img {
-    height: 40px;
-    mix-blend-mode: multiply;
+    height: 38px;
     object-fit: contain;
+    display: block;
 }
 
 .navbar nav {
@@ -49,8 +48,8 @@ body {
 .navbar nav a {
     text-decoration: none;
     color: var(--texto);
-    margin-left: 2rem;
-    font-size: 0.9rem;
+    margin-left: 1.8rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 600;
@@ -81,36 +80,36 @@ body {
 
 .hero-content {
     text-align: center;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 4rem;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 3.5rem 2rem;
     border-radius: 4px;
     border-top: 4px solid var(--acento);
-    width: 100%;
+    width: 90%;
     max-width: 800px;
 }
 
 .hero-content h1 {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
     color: var(--texto);
 }
 
 .hero-content p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--texto);
     margin-bottom: 2rem;
 }
 
 .btn {
     display: inline-block;
-    padding: 1rem 2rem;
+    padding: 0.9rem 2rem;
     background: var(--acento);
     color: var(--blanco);
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: bold;
     transition: background 0.3s ease, transform 0.2s ease;
 }
@@ -121,25 +120,25 @@ body {
 }
 
 .featured-projects, .content-section {
-    padding: 8rem 5%;
+    padding: 6rem 5%;
     background-color: var(--blanco);
 }
 
 .content-section {
     min-height: 80vh;
-    padding-top: 10rem;
+    padding-top: 9rem;
 }
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
 .project-card img {
     width: 100%;
-    height: 400px;
+    height: 380px;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
@@ -152,7 +151,7 @@ body {
 }
 
 .project-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .project-card:hover h3 {
@@ -163,43 +162,42 @@ body {
     padding-top: 1rem;
 }
 
-.project-info h3 {
-    transition: color 0.3s;
-}
-
 .project-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
+
 .project-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
 }
+
 .project-gallery img {
     width: 100%;
-    height: 500px;
+    height: 450px;
     object-fit: cover;
 }
 
 footer {
-    padding: 4rem 5%;
+    padding: 3rem 5%;
     background: var(--texto);
     color: var(--blanco);
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .whatsapp-float {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 25px;
+    right: 25px;
     background-color: var(--acento);
     color: var(--blanco);
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
+    font-size: 0.9rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     z-index: 1000;
     transition: transform 0.3s ease, background 0.3s ease;
@@ -213,49 +211,66 @@ footer {
 @media screen and (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        padding: 1rem 5%;
+        padding: 1rem;
+        gap: 0.8rem;
     }
+    
     .navbar nav {
-        margin-top: 1rem;
-        flex-wrap: wrap;
+        width: 100%;
         justify-content: center;
-        gap: 10px;
+        flex-wrap: wrap;
+        gap: 12px;
     }
+
     .navbar nav a {
         margin-left: 0;
-        margin: 0 0.5rem;
-        font-size: 0.8rem;
+        margin: 0 6px;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
     }
+
+    .hero {
+        height: 100vh;
+        padding-top: 5rem;
+    }
+
     .hero-content {
-        padding: 2.5rem 1.5rem;
-        width: 90%;
+        padding: 2rem 1.2rem;
+        width: 92%;
     }
+
     .hero-content h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
+
     .hero-content p {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
+
     .featured-projects, .content-section {
-        padding: 4rem 5%;
+        padding: 4rem 1.5rem;
     }
+    
     .content-section {
         padding-top: 8rem;
     }
+
     .project-card img {
-        height: 250px;
+        height: 280px;
     }
+
     .project-gallery {
         grid-template-columns: 1fr;
     }
+
     .project-gallery img {
-        height: auto;
-        aspect-ratio: 4/3;
+        height: 320px;
     }
+
     .whatsapp-float {
-        bottom: 20px;
-        right: 20px;
-        padding: 10px 18px;
-        font-size: 0.85rem;
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 16px;
+        font-size: 0.8rem;
     }
 }
