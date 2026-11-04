@@ -100,7 +100,6 @@ img { max-width: 100%; }
     overflow: hidden;
     background: var(--texto);
 }
-main > .hero-project:first-child { padding-top: var(--nav-h); }
 
 .hero-link { display: block; position: relative; width: fit-content; max-width: 100%; margin: 0 auto; text-decoration: none; }
 
@@ -243,6 +242,80 @@ footer { padding: 4rem 5%; background: var(--texto); color: var(--blanco); text-
 .social-contact a { color: var(--texto); font-weight: 500; font-size: 1.1rem; min-height: 44px; }
 .social-contact svg { width: 26px; height: 26px; }
 
+/* ---------- NAVBAR TRANSPARENTE SOBRE LA PORTADA (solo inicio) ---------- */
+.navbar { transition: background 0.35s ease, box-shadow 0.35s ease; }
+body.home .navbar { background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0)); box-shadow: none; }
+body.home .navbar.scrolled,
+body.home .navbar.menu-open { background: var(--nav-bg); box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+body.home .navbar .logo { transition: opacity 0.35s ease; }
+body.home .navbar:not(.scrolled):not(.menu-open) .logo { opacity: 0; pointer-events: none; }
+
+/* ---------- PORTADA CON RECORRIDO DE PROYECTOS ---------- */
+.intro {
+    position: relative;
+    height: 100vh;
+    height: 100svh;
+    min-height: 520px;
+    overflow: hidden;
+    background: var(--texto);
+    color: var(--blanco);
+}
+.intro-slides, .intro-slide { position: absolute; inset: 0; }
+.intro-slide { opacity: 0; transition: opacity 1.4s ease; }
+.intro-slide.is-active { opacity: 1; }
+.intro-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.intro-shade {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.28) 45%, rgba(0,0,0,0.62) 100%);
+}
+.intro-content {
+    position: absolute; inset: 0; padding: 0 5%;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+}
+.intro-logo { width: min(78vw, 460px); height: auto; filter: drop-shadow(0 2px 14px rgba(0,0,0,0.4)); }
+.intro-bottom {
+    position: absolute; left: 0; right: 0;
+    bottom: max(1.25rem, env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    padding: 0 5%;
+}
+.intro-caption { min-height: 1.4em; font-size: 0.9rem; letter-spacing: 1.5px; text-align: center; color: rgba(255,255,255,0.92); transition: opacity 0.4s ease; }
+.intro-caption.is-changing { opacity: 0; }
+.intro-arrow { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 56px; color: var(--blanco); transition: color 0.3s; }
+.intro-arrow svg { width: 24px; height: 40px; }
+.intro-arrow:hover, .intro-arrow:focus-visible { color: var(--acento); outline: none; }
+
+/* ---------- NOSOTROS (inicio) ---------- */
+.about { padding: 7rem 5%; background: var(--blanco); }
+.about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: start; }
+.about-title { font-size: 2rem; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; padding-left: 1.25rem; border-left: 4px solid var(--acento); line-height: 1.2; }
+.about-text p { font-size: 1.15rem; line-height: 1.85; color: #444; }
+.about-text p + p { margin-top: 1.25rem; }
+.about-link { display: inline-block; margin-top: 1.75rem; color: var(--acento); font-weight: 600; text-decoration: none; padding: 0.5rem 0; border-bottom: 2px solid var(--acento); }
+.about-link:hover, .about-link:focus-visible { color: var(--texto); border-bottom-color: var(--texto); outline: none; }
+
+/* ---------- BOTÓN DE WHATSAPP ---------- */
+.wa-btn {
+    position: fixed;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 900;
+    display: flex; align-items: center;
+    height: 56px; min-width: 56px; padding: 0 15px;
+    border-radius: 28px;
+    background: #25D366; color: #fff; text-decoration: none; overflow: hidden;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(255,255,255,0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.wa-btn svg { width: 26px; height: 26px; flex: none; }
+.wa-btn span { max-width: 0; opacity: 0; margin-left: 0; white-space: nowrap; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.3px; transition: max-width 0.35s ease, opacity 0.25s ease, margin 0.35s ease; }
+.wa-btn:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
+@media (hover: hover) {
+    .wa-btn:hover { transform: translateY(-2px); background: #1fbd5a; box-shadow: 0 12px 28px rgba(0,0,0,0.32), inset 0 0 0 1px rgba(255,255,255,0.18); }
+    .wa-btn:hover span, .wa-btn:focus-visible span { max-width: 140px; opacity: 1; margin-left: 0.6rem; }
+}
+
 /* ---------- LEGAL ---------- */
 .legal-links {
     display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
@@ -316,6 +389,11 @@ footer { padding: 4rem 5%; background: var(--texto); color: var(--blanco); text-
     .hero-caption { position: static; max-width: none; padding: 1.25rem 5%; box-shadow: none; background: var(--blanco); }
     .hero-caption h2 { font-size: 1.4rem; }
 
+    .about { padding: 4.5rem 5%; }
+    .about-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    .about-title { font-size: 1.5rem; }
+    .about-text p { font-size: 1.02rem; }
+    .intro { min-height: 480px; }
     .featured-projects { padding: 3.5rem 5%; }
     .project-grid { gap: 1.75rem; }
 
@@ -332,5 +410,6 @@ footer { padding: 4rem 5%; background: var(--texto); color: var(--blanco); text-
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .intro-slide { transition: none !important; }
     *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
 }
