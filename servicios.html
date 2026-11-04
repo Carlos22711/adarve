@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios | Adarve Arquitectura</title>
-    <link rel="stylesheet" href="css/styles.css?v=7">
-    <script src="js/main.js?v=7" defer></script>
+    <link rel="stylesheet" href="css/styles.css?v=10">
+    <script src="js/main.js?v=10" defer></script>
 </head>
 <body>
     <header class="navbar">
         <div class="logo">
             <a href="index.html">
-                <img src="assets/images/logo.png?v=7" alt="Adarve Arquitectura">
+                <img src="assets/images/logo.png?v=10" alt="Adarve Arquitectura">
             </a>
         </div>
         <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
@@ -34,33 +34,59 @@
         <div class="service-list">
             <article class="service">
                 <h3>Diseño Arquitectónico Integral</h3>
-                <ul>
-                    <li>Conceptualización, anteproyectos y desarrollo de planos ejecutivos para obra residencial y comercial.</li>
-                    <li>Optimización espacial y adaptación precisa a las necesidades y estilo de vida de cada cliente.</li>
-                </ul>
+                <div class="service-body">
+                    <ul>
+                        <li>Conceptualización, anteproyectos y desarrollo de planos ejecutivos para obra residencial y comercial.</li>
+                        <li>Optimización espacial y adaptación precisa a las necesidades y estilo de vida de cada cliente.</li>
+                    </ul>
+                    <button type="button" class="btn btn-service" data-service="diseno">Quiero este servicio</button>
+                </div>
             </article>
 
             <article class="service">
                 <h3>Interiorismo y Remodelación Comercial</h3>
-                <ul>
-                    <li>Transformación de espacios existentes para potenciar la identidad de marca y la experiencia del usuario, como en el proyecto de la Estética Sagitarios.</li>
-                    <li>Diseño de mobiliario a la medida y selección de acabados e iluminación.</li>
-                </ul>
+                <div class="service-body">
+                    <ul>
+                        <li>Transformación de espacios existentes para potenciar la identidad de marca y la experiencia del usuario, como en el proyecto de la Estética Sagitarios.</li>
+                        <li>Diseño de mobiliario a la medida y selección de acabados e iluminación.</li>
+                    </ul>
+                    <button type="button" class="btn btn-service" data-service="interiorismo">Quiero este servicio</button>
+                </div>
             </article>
 
             <article class="service">
                 <h3>Supervisión y Dirección de Obra</h3>
-                <ul>
-                    <li>Control riguroso en campo de los procesos constructivos para garantizar la más alta calidad en cada detalle.</li>
-                    <li>Gestión de tiempos, selección de materiales puros y optimización de presupuestos.</li>
-                </ul>
+                <div class="service-body">
+                    <ul>
+                        <li>Control riguroso en campo de los procesos constructivos para garantizar la más alta calidad en cada detalle.</li>
+                        <li>Gestión de tiempos, selección de materiales puros y optimización de presupuestos.</li>
+                    </ul>
+                    <button type="button" class="btn btn-service" data-service="supervision">Quiero este servicio</button>
+                </div>
             </article>
         </div>
 
         <div class="cta-box">
-            <a href="https://wa.me/525650339854?text=Hola%20Adarve%20Arquitectura,%20me%20gustar%C3%ADa%20cotizar%20un%20servicio." class="btn" target="_blank" rel="noopener noreferrer">Solicitar cotización</a>
+            <p class="cta-text">¿No sabes qué servicio necesitas?</p>
+            <a href="contacto.html" class="btn">Escríbenos</a>
         </div>
     </main>
+
+    <dialog id="serviceDialog" class="service-dialog" aria-labelledby="serviceDialogTitle">
+        <div class="dialog-box">
+            <button type="button" class="dialog-close" id="serviceClose" aria-label="Cerrar">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+            </button>
+            <h2 id="serviceDialogTitle" class="dialog-title" tabindex="-1"></h2>
+            <p class="dialog-intro">Cuéntanos un poco para atenderte mejor. Al enviar, se abrirá WhatsApp con tu mensaje listo para mandar.</p>
+            <form id="serviceForm" novalidate>
+                <div class="dialog-fields"></div>
+                <p class="form-error" id="serviceError" role="alert" hidden></p>
+                <button type="submit" class="btn btn-submit">Enviar por WhatsApp</button>
+                <p class="form-note">Tus datos no se guardan en este sitio: solo viajan en el mensaje que tú envías por WhatsApp.</p>
+            </form>
+        </div>
+    </dialog>
 
     <footer>
         <p>&copy; 2026 Adarve Arquitectura. Todos los derechos reservados.</p>
