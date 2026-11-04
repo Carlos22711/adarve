@@ -3,7 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const navMenu = document.getElementById('navMenu');
 
     if (menuToggle && navMenu) {
+        const navbar = document.querySelector('.navbar');
         const setMenu = (open) => {
+            if (navbar) navbar.classList.toggle('menu-open', open);
             navMenu.classList.toggle('active', open);
             menuToggle.classList.toggle('open', open);
             menuToggle.setAttribute('aria-expanded', String(open));
@@ -35,6 +37,58 @@ document.addEventListener("DOMContentLoaded", () => {
             const href = link.getAttribute('href').split('/').pop();
             if (href === current) link.setAttribute('aria-current', 'page');
         });
+    }
+
+
+    // ---- Barra transparente sobre la portada (solo inicio) ----
+    const navbarEl = document.querySelector('.navbar');
+    if (navbarEl && document.body.classList.contains('home')) {
+        const onScroll = () => navbarEl.classList.toggle('scrolled', window.scrollY > 40);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    // ---- Portada: recorrido automático de fotos de los proyectos ----
+    const slides = Array.from(document.querySelectorAll('.intro-slide'));
+    const caption = document.getElementById('introCaption');
+    if (slides.length > 1) {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const INTERVAL = 6000;
+        let current = 0, timer = null;
+
+        const load = (i) => new Promise((resolve) => {
+            const img = slides[i].querySelector('img');
+            if (!img) return resolve();
+            if (img.dataset.src && !img.getAttribute('src')) img.src = img.dataset.src;
+            if (img.complete && img.naturalWidth > 0) return resolve();
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+        });
+
+        const show = (i) => {
+            slides[current].classList.remove('is-active');
+            slides[current].setAttribute('aria-hidden', 'true');
+            slides[i].classList.add('is-active');
+            slides[i].removeAttribute('aria-hidden');
+            if (caption && slides[i].dataset.project !== slides[current].dataset.project) {
+                caption.classList.add('is-changing');
+                setTimeout(() => { caption.textContent = slides[i].dataset.project; caption.classList.remove('is-changing'); }, 400);
+            }
+            current = i;
+        };
+
+        const next = async () => {
+            const i = (current + 1) % slides.length;
+            await load(i);
+            show(i);
+            load((i + 1) % slides.length);   // precarga la siguiente
+        };
+
+        const start = () => { if (!timer && !reduceMotion) timer = setInterval(next, INTERVAL); };
+        const stop = () => { clearInterval(timer); timer = null; };
+
+        window.addEventListener('load', () => { load(1); start(); });
+        document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
     }
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
