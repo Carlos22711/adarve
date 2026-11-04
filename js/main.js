@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const caption = document.getElementById('introCaption');
     if (slides.length > 1) {
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const INTERVAL = 6000;
+        const INTERVAL = 3000;   // milisegundos entre fotos (3000 = 3 s, 2000 = 2 s)
         let current = 0, timer = null;
 
         const load = (i) => new Promise((resolve) => {
