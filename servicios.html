@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adarve Arquitectura</title>
+    <title>Servicios | Adarve Arquitectura</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <header class="navbar">
         <div class="logo">
-            <a href="index.html"><img src="assets/images/logo.png" alt="Adarve Arquitectura"></a>
+            <a href="index.html">
+                <img src="assets/images/logo.png" alt="Adarve Arquitectura">
+            </a>
         </div>
-        <nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu" id="navMenu">
             <a href="index.html">Inicio</a>
             <a href="proyectos.html">Proyectos</a>
             <a href="servicios.html">Servicios</a>
@@ -19,15 +27,28 @@
             <a href="contacto.html">Contacto</a>
         </nav>
     </header>
-    <main class="content-section" style="text-align: center;">
-        <h1>Sección en desarrollo / Prototipo</h1>
-        <p style="margin-top: 1rem;">Navega de regreso al inicio o explora nuestro proyecto principal.</p>
-        <br>
-        <a href="index.html" class="btn">Volver al inicio</a>
+
+    <main class="content-section">
+        <h1 style="text-align: center; margin-bottom: 3rem; font-weight: 300; letter-spacing: 2px;">SERVICIOS</h1>
+        <div style="display: grid; gap: 3rem; max-width: 800px; margin: 0 auto;">
+            <div style="border-left: 3px solid var(--acento); padding-left: 1.5rem;">
+                <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 500;">Diseño Arquitectónico</h3>
+                <p style="color: #555;">Creación de proyectos integrales residenciales y comerciales desde la conceptualización hasta la entrega de planos ejecutivos.</p>
+            </div>
+            <div style="border-left: 3px solid var(--acento); padding-left: 1.5rem;">
+                <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 500;">Interiorismo y Remodelación</h3>
+                <p style="color: #555;">Transformación y optimización de espacios existentes, cuidando la estética visual, la iluminación y la funcionalidad.</p>
+            </div>
+            <div style="border-left: 3px solid var(--acento); padding-left: 1.5rem;">
+                <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 500;">Supervisión de Obra</h3>
+                <p style="color: #555;">Control y seguimiento riguroso de la ejecución en campo para garantizar calidad, cumplimiento de tiempos y presupuestos.</p>
+            </div>
+        </div>
     </main>
+
     <footer>
         <p>&copy; 2026 Adarve Arquitectura. Todos los derechos reservados.</p>
     </footer>
-    <a href="https://wa.me/525650339854" class="whatsapp-float" target="_blank">Chatea con nosotros</a>
+    <a href="https://wa.me/525650339854" class="whatsapp-float" target="_blank">WhatsApp</a>
 </body>
 </html>
