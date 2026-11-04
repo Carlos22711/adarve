@@ -91,6 +91,152 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
     }
 
+
+    // ---- WhatsApp: utilidades compartidas por los formularios ----
+    const WHATSAPP = '525650339854';
+    const clean = (v) => v.replace(/\s+/g, ' ').trim();
+    const openWhatsApp = (lines) => {
+        const url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lines.join('\n'));
+        const win = window.open(url, '_blank', 'noopener');
+        if (!win) window.location.href = url;   // por si el navegador bloquea la pestaña nueva
+    };
+
+    // ---- Formulario de CONTACTO (general) ----
+    const form = document.getElementById('contactForm');
+    if (form) {
+        const errorBox = document.getElementById('formError');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const campos = [
+                ['nombre', clean(form.nombre.value), 'tu nombre'],
+                ['motivo', form.motivo.value, 'el motivo'],
+                ['mensaje', form.mensaje.value.trim(), 'un mensaje']
+            ];
+            const faltan = campos.filter(([, val]) => !val);
+            campos.forEach(([id, val]) => form[id].closest('.field').classList.toggle('has-error', !val));
+            if (faltan.length) {
+                errorBox.textContent = 'Por favor completa: ' + faltan.map(f => f[2]).join(', ') + '.';
+                errorBox.hidden = false;
+                form[faltan[0][0]].focus();
+                return;
+            }
+            errorBox.hidden = true;
+            openWhatsApp([
+                'Hola Adarve Arquitectura, quisiera ponerme en contacto con ustedes.',
+                '',
+                '*Nombre:* ' + campos[0][1],
+                '*Motivo:* ' + campos[1][1],
+                '*Mensaje:* ' + campos[2][1]
+            ]);
+        });
+        form.addEventListener('input', (e) => {
+            const field = e.target.closest('.field');
+            if (field && e.target.value.trim()) field.classList.remove('has-error');
+        });
+    }
+
+    // ---- Cuestionarios de SERVICIOS ("Quiero este servicio") ----
+    // Preguntas del cuestionario (las mismas del formulario de Tally). Se usan en los 3 servicios.
+    // Edita aquí: type = text | select | textarea | checks ; required: true las vuelve obligatorias
+    const PREGUNTAS = [
+        { id: 'nombre', label: 'Nombre', type: 'text', required: true, autocomplete: 'name' },
+        { id: 'ciudad', label: 'Ciudad/Colonia', type: 'text', required: true },
+        { id: 'terreno', label: '¿Cuentas con terreno o inmueble?', type: 'select', required: true,
+          options: ['Sí, tengo terreno', 'Sí, tengo inmueble', 'Todavía no'] },
+        { id: 'm2', label: '¿Cuántos m² tiene tu terreno?', type: 'text', optional: true, placeholder: 'Ej. 120' },
+        { id: 'planos', label: '¿Tienes planos, estructura o algún levantamiento?', type: 'checks', optional: true,
+          options: ['Planos', 'Estructura', 'Levantamiento', 'Ninguno'] },
+        { id: 'presupuesto', label: '¿Qué presupuesto tienes pensado?', type: 'text', optional: true, placeholder: 'Monto aproximado' },
+        { id: 'inicio', label: '¿Cuándo te gustaría iniciar?', type: 'text', optional: true, placeholder: 'Ej. enero 2027' }
+    ];
+    const SERVICES = {
+        diseno: { nombre: 'Diseño Arquitectónico Integral', campos: PREGUNTAS },
+        interiorismo: { nombre: 'Interiorismo y Remodelación Comercial', campos: PREGUNTAS },
+        supervision: { nombre: 'Supervisión y Dirección de Obra', campos: PREGUNTAS }
+    };
+
+    const dialog = document.getElementById('serviceDialog');
+    if (dialog) {
+        const sform = document.getElementById('serviceForm');
+        const box = sform.querySelector('.dialog-fields');
+        const title = document.getElementById('serviceDialogTitle');
+        const err = document.getElementById('serviceError');
+        let actual = null;
+
+        const labelHtml = (f) => f.label + (f.optional ? ' <span class="optional">(opcional)</span>' : '');
+        const fieldHtml = (f) => {
+            const id = 'sf-' + f.id;
+            if (f.type === 'select') {
+                return `<div class="field" data-id="${f.id}"><label for="${id}">${labelHtml(f)}</label>
+                    <select id="${id}" name="${f.id}"><option value="" selected disabled>Selecciona una opción</option>${f.options.map(o => `<option>${o}</option>`).join('')}</select></div>`;
+            }
+            if (f.type === 'textarea') {
+                return `<div class="field" data-id="${f.id}"><label for="${id}">${labelHtml(f)}</label><textarea id="${id}" name="${f.id}" rows="4" maxlength="600"></textarea></div>`;
+            }
+            if (f.type === 'checks') {
+                return `<fieldset class="field" data-id="${f.id}"><legend>${labelHtml(f)}</legend>${f.options.map(o => `<label class="check"><input type="checkbox" name="${f.id}" value="${o}"> ${o}</label>`).join('')}</fieldset>`;
+            }
+            return `<div class="field" data-id="${f.id}"><label for="${id}">${labelHtml(f)}</label>
+                <input type="text" id="${id}" name="${f.id}" maxlength="100"${f.autocomplete ? ` autocomplete="${f.autocomplete}"` : ''}${f.placeholder ? ` placeholder="${f.placeholder}"` : ''}></div>`;
+        };
+        const valueOf = (f) => {
+            if (f.type === 'checks') return Array.from(sform.querySelectorAll(`input[name="${f.id}"]:checked`)).map(i => i.value).join(', ');
+            const el = sform.elements[f.id];
+            return f.type === 'textarea' ? el.value.trim() : clean(el.value);
+        };
+
+        document.querySelectorAll('[data-service]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                actual = SERVICES[btn.dataset.service];
+                if (!actual) return;
+                if (typeof dialog.showModal !== 'function') {            // navegador muy antiguo: mensaje directo
+                    openWhatsApp(['Hola Adarve Arquitectura, tengo interés en este servicio: *' + actual.nombre + '*']);
+                    return;
+                }
+                title.textContent = actual.nombre;
+                box.innerHTML = actual.campos.map(fieldHtml).join('');
+                err.hidden = true;
+                document.body.classList.add('modal-open');
+                dialog.showModal();
+                dialog.scrollTop = 0;
+                title.focus();
+            });
+        });
+
+        const cerrar = () => dialog.close();
+        document.getElementById('serviceClose').addEventListener('click', cerrar);
+        dialog.addEventListener('click', (e) => { if (e.target === dialog) cerrar(); });   // clic en el fondo
+        dialog.addEventListener('close', () => document.body.classList.remove('modal-open'));
+
+        sform.addEventListener('input', (e) => {
+            const field = e.target.closest('.field');
+            if (field) field.classList.remove('has-error');
+        });
+
+        sform.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!actual) return;
+            const faltan = [];
+            actual.campos.forEach((f) => {
+                const vacio = !valueOf(f);
+                const falta = !!(f.required && vacio);
+                sform.querySelector(`.field[data-id="${f.id}"]`).classList.toggle('has-error', falta);
+                if (falta) faltan.push(f);
+            });
+            if (faltan.length) {
+                err.textContent = 'Por favor completa: ' + faltan.map(f => f.label.toLowerCase().replace(/[¿?]/g, '')).join(', ') + '.';
+                err.hidden = false;
+                const primero = sform.querySelector(`.field[data-id="${faltan[0].id}"]`);
+                (primero.querySelector('input, select, textarea') || primero).focus();
+                return;
+            }
+            err.hidden = true;
+            const lineas = ['Hola Adarve Arquitectura, tengo interés en este servicio: *' + actual.nombre + '*', ''];
+            actual.campos.forEach((f) => { const v = valueOf(f); if (v) lineas.push('*' + f.label.replace(/[¿?]/g, '') + ':* ' + v); });
+            openWhatsApp(lineas);
+        });
+    }
+
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduce && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
