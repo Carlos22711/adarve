@@ -16,34 +16,40 @@
                 <img src="assets/images/logo.png" alt="Adarve Arquitectura">
             </a>
         </div>
-        <nav>
+        <!-- Menú de hamburguesa exclusivo para móvil -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu" id="navMenu">
             <a href="index.html">Inicio</a>
             <a href="proyectos.html">Proyectos</a>
-            <a href="servicios.html">Servicios</a>
-            <a href="acerca.html">Acerca de</a>
             <a href="contacto.html">Contacto</a>
         </nav>
     </header>
 
     <main>
-        <section class="hero">
-            <div class="hero-content fade-in">
-                <h1>Diseño atemporal,<br>espacios con propósito.</h1>
-                <p>Adarve Arquitectura</p>
-                <a href="proyectos/remodelacion-estetica-sagitarios.html" class="btn">Ver Proyecto Principal</a>
-            </div>
-            <img src="assets/images/hero.jpg" alt="Remodelación Estética Sagitarios" class="hero-bg">
+        <!-- Portada interactiva: Imagen principal que redirecciona al proyecto -->
+        <section class="hero-project">
+            <a href="proyectos/remodelacion-estetica-sagitarios.html" class="hero-link">
+                <img src="assets/images/hero.jpg" alt="Remodelación Estética Sagitarios" class="hero-bg">
+                <div class="hero-caption fade-in">
+                    <h2>Remodelación Estética Sagitarios</h2>
+                    <span class="explore-btn">Ver Proyecto</span>
+                </div>
+            </a>
         </section>
 
+        <!-- Galería de proyectos destacados (solo nombre) -->
         <section class="featured-projects">
-            <h2 class="slide-up">Proyectos Destacados</h2>
+            <h2 class="slide-up" style="text-align: center; margin-bottom: 2rem; font-weight: 300; letter-spacing: 2px;">Proyectos</h2>
             <div class="project-grid">
                 <article class="project-card slide-up">
                     <a href="proyectos/remodelacion-estetica-sagitarios.html">
                         <img src="assets/images/sagitarios-1.jpg" alt="Remodelación Estética Sagitarios">
                         <div class="project-info">
                             <h3>Remodelación Estética Sagitarios</h3>
-                            <span>Comercial • Interiorismo</span>
                         </div>
                     </a>
                 </article>
@@ -53,10 +59,15 @@
 
     <footer>
         <p>&copy; 2026 Adarve Arquitectura. Todos los derechos reservados.</p>
+        <div class="social-footer" style="margin-top: 1rem;">
+            <a href="https://instagram.com" target="_blank" style="color: var(--blanco); margin: 0 10px; text-decoration: none;">Instagram</a>
+            <a href="https://facebook.com" target="_blank" style="color: var(--blanco); margin: 0 10px; text-decoration: none;">Facebook</a>
+            <a href="https://linkedin.com" target="_blank" style="color: var(--blanco); margin: 0 10px; text-decoration: none;">LinkedIn</a>
+        </div>
     </footer>
 
     <a href="https://wa.me/525650339854?text=Hola%20Adarve%20Arquitectura,%20me%20gustar%C3%ADa%20solicitar%20m%C3%A1s%20informaci%C3%B3n." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        Chatea con nosotros
+        WhatsApp
     </a>
 </body>
 </html>

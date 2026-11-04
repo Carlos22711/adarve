@@ -3,31 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adarve Arquitectura</title>
+    <title>Proyectos | Adarve Arquitectura</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <header class="navbar">
         <div class="logo">
-            <a href="index.html"><img src="assets/images/logo.png" alt="Adarve Arquitectura"></a>
+            <a href="index.html">
+                <img src="assets/images/logo.png" alt="Adarve Arquitectura">
+            </a>
         </div>
-        <nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu" id="navMenu">
             <a href="index.html">Inicio</a>
             <a href="proyectos.html">Proyectos</a>
-            <a href="servicios.html">Servicios</a>
-            <a href="acerca.html">Acerca de</a>
             <a href="contacto.html">Contacto</a>
         </nav>
     </header>
-    <main class="content-section" style="text-align: center;">
-        <h1>Sección en desarrollo / Prototipo</h1>
-        <p style="margin-top: 1rem;">Navega de regreso al inicio o explora nuestro proyecto principal.</p>
-        <br>
-        <a href="index.html" class="btn">Volver al inicio</a>
+    
+    <main class="content-section">
+        <h1 style="text-align: center; margin-bottom: 3rem; font-weight: 300; letter-spacing: 2px;">PROYECTOS</h1>
+        <div class="project-grid">
+            <article class="project-card">
+                <a href="proyectos/remodelacion-estetica-sagitarios.html">
+                    <img src="assets/images/hero.jpg" alt="Remodelación Estética Sagitarios">
+                    <div class="project-info">
+                        <h3>Remodelación Estética Sagitarios</h3>
+                    </div>
+                </a>
+            </article>
+        </div>
     </main>
+
     <footer>
         <p>&copy; 2026 Adarve Arquitectura. Todos los derechos reservados.</p>
     </footer>
-    <a href="https://wa.me/525650339854" class="whatsapp-float" target="_blank">Chatea con nosotros</a>
+    <a href="https://wa.me/525650339854" class="whatsapp-float" target="_blank">WhatsApp</a>
 </body>
 </html>

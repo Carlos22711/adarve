@@ -3,31 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adarve Arquitectura</title>
+    <title>Contacto | Adarve Arquitectura</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <header class="navbar">
         <div class="logo">
-            <a href="index.html"><img src="assets/images/logo.png" alt="Adarve Arquitectura"></a>
+            <a href="index.html">
+                <img src="assets/images/logo.png" alt="Adarve Arquitectura">
+            </a>
         </div>
-        <nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu" id="navMenu">
             <a href="index.html">Inicio</a>
             <a href="proyectos.html">Proyectos</a>
-            <a href="servicios.html">Servicios</a>
-            <a href="acerca.html">Acerca de</a>
             <a href="contacto.html">Contacto</a>
         </nav>
     </header>
+    
     <main class="content-section" style="text-align: center;">
-        <h1>Sección en desarrollo / Prototipo</h1>
-        <p style="margin-top: 1rem;">Navega de regreso al inicio o explora nuestro proyecto principal.</p>
-        <br>
-        <a href="index.html" class="btn">Volver al inicio</a>
+        <h1 style="color: var(--texto); margin-bottom: 1.5rem; font-weight: 300; letter-spacing: 2px;">CONTACTO</h1>
+        <p style="margin-bottom: 3rem; color: #666; font-size: 1.1rem;">Hablemos sobre tu próximo proyecto arquitectónico o comercial.</p>
+        
+        <div style="margin-bottom: 3rem;">
+            <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">WhatsApp Directo</p>
+            <a href="https://wa.me/525650339854?text=Hola%20Adarve%20Arquitectura,%20me%20gustar%C3%ADa%20solicitar%20m%C3%A1s%20informaci%C3%B3n." class="btn" style="display:inline-block; padding: 1rem 2.5rem; background: var(--acento); color: #fff; text-decoration: none; font-weight: bold; letter-spacing: 1px;" target="_blank">Enviar Mensaje</a>
+        </div>
+
+        <div style="margin-top: 4rem;">
+            <h3 style="font-weight: 400; margin-bottom: 1.5rem; letter-spacing: 1px;">Redes Sociales</h3>
+            <div style="display: flex; justify-content: center; gap: 2rem; font-size: 1.1rem;">
+                <a href="https://instagram.com" target="_blank" style="color: var(--texto); text-decoration: none; font-weight: 500;">Instagram</a>
+                <a href="https://facebook.com" target="_blank" style="color: var(--texto); text-decoration: none; font-weight: 500;">Facebook</a>
+                <a href="https://linkedin.com" target="_blank" style="color: var(--texto); text-decoration: none; font-weight: 500;">LinkedIn</a>
+            </div>
+        </div>
     </main>
+
     <footer>
         <p>&copy; 2026 Adarve Arquitectura. Todos los derechos reservados.</p>
     </footer>
-    <a href="https://wa.me/525650339854" class="whatsapp-float" target="_blank">Chatea con nosotros</a>
+    <a href="https://wa.me/525650339854" class="whatsapp-float" target="_blank">WhatsApp</a>
 </body>
 </html>
