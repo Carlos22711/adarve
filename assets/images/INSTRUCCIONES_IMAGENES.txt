@@ -1,0 +1,13 @@
+INSTRUCCIONES PARA LAS IMÁGENES
+-------------------------------
+Para que el prototipo se vea exactamente con tus imágenes, debes colocarlas dentro de la carpeta "assets/images" (crea las carpetas si no existen dentro de la raíz de tu proyecto) y renombrarlas de la siguiente manera:
+
+1. El logotipo que enviaste (image_4f0169.png) renómbralo a: logo.png
+2. La imagen principal que quieras de portada (ej. image_4ee7c2.jpg) renómbrala a: hero.jpg
+3. Las 4 imágenes de la estética (image_4eea82.jpg, image_4ee7c2.jpg, image_4ee7b9.jpg, image_4ee781.jpg) renómbralas a:
+   - sagitarios-1.jpg
+   - sagitarios-2.jpg
+   - sagitarios-3.jpg
+   - sagitarios-4.jpg
+
+De esta manera, el código HTML las detectará automáticamente y las mostrará en la página principal y en la galería del proyecto.
