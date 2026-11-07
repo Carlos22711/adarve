@@ -22,25 +22,10 @@
     <meta property="og:image:alt" content="Interior de la Estética Sagitarios con lámparas lineales luminosas y plantas colgantes">
     <meta name="twitter:card" content="summary_large_image">
     <!-- /SEO -->
-    <link rel="stylesheet" href="../css/styles.css?v=14">
-    <style>
-        .cover-stage { position: relative; aspect-ratio: 4 / 5; max-height: 82vh; width: 100%; overflow: hidden; background: #e6e3df; }
-        .cover-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease; }
-        .cover-slide.is-active { opacity: 1; }
-        .cover-dots { display: flex; justify-content: center; gap: 0.2rem; margin-top: 0.5rem; }
-        .cover-dot { width: 28px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
-        .cover-dot::after { content: ""; position: absolute; left: 50%; top: 50%; width: 22px; height: 3px; margin: -1.5px 0 0 -11px; background: #cfcac4; transition: background 0.3s; }
-        .cover-dot.is-active::after { background: var(--acento); }
-        .cover-dot:focus-visible { outline: 2px solid var(--acento); outline-offset: 1px; }
-        @media (prefers-reduced-motion: reduce) { .cover-slide { transition: none; } }
-        .compare-list { display: grid; gap: 3rem; }
-        .compare-item { margin: 0; }
-        .compare-item figcaption { padding-top: 0.7rem; font-size: 0.95rem; color: #555; }
-        @media (max-width: 700px) { .compare { --ratio: 4 / 5 !important; } }
-    </style>
+    <link rel="stylesheet" href="../css/styles.css?v=15">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    <script src="../js/main.js?v=14" defer></script>
+    <script src="../js/main.js?v=15" defer></script>
 </head>
 <body>
     <header class="navbar">
@@ -77,13 +62,13 @@
             </div>
             <figure class="project-cover cover-carousel fade-in" aria-roledescription="carrusel" aria-label="Fotos de la obra terminada">
                 <div class="cover-stage">
-                    <img class="cover-slide is-active" src="../assets/images/sagitarios-1-obra.jpg" alt="Estética Sagitarios terminada: Vista general" fetchpriority="high">
-                    <img class="cover-slide" src="../assets/images/sagitarios-2-obra.jpg" alt="Estética Sagitarios terminada: Área de corte" loading="lazy">
-                    <img class="cover-slide" src="../assets/images/sagitarios-3-obra.jpg" alt="Estética Sagitarios terminada: Área de lavado" loading="lazy">
-                    <img class="cover-slide" src="../assets/images/sagitarios-4-obra.jpg" alt="Estética Sagitarios terminada: Celosía de madera" loading="lazy">
-                    <img class="cover-slide" src="../assets/images/sagitarios-5-obra.jpg" alt="Estética Sagitarios terminada: Detalle interior 5" loading="lazy">
-                    <img class="cover-slide" src="../assets/images/sagitarios-6-obra.jpg" alt="Estética Sagitarios terminada: Detalle interior 6" loading="lazy">
-                    <img class="cover-slide" src="../assets/images/sagitarios-7-obra.jpg" alt="Estética Sagitarios terminada: Detalle interior 7" loading="lazy">
+                    <img class="cover-slide is-active" src="../assets/images/sagitarios-1-obra.jpg" alt="Estética Sagitarios terminada, nicho de lavado" fetchpriority="high">
+                    <img class="cover-slide" src="../assets/images/sagitarios-2-obra.jpg" alt="Estética Sagitarios terminada, foto 2" loading="lazy">
+                    <img class="cover-slide" src="../assets/images/sagitarios-3-obra.jpg" alt="Estética Sagitarios terminada, foto 3" loading="lazy">
+                    <img class="cover-slide" src="../assets/images/sagitarios-4-obra.jpg" alt="Estética Sagitarios terminada, foto 4" loading="lazy">
+                    <img class="cover-slide" src="../assets/images/sagitarios-5-obra.jpg" alt="Estética Sagitarios terminada, foto 5" loading="lazy">
+                    <img class="cover-slide" src="../assets/images/sagitarios-6-obra.jpg" alt="Estética Sagitarios terminada, foto 6" loading="lazy">
+                    <img class="cover-slide" src="../assets/images/sagitarios-7-obra.jpg" alt="Estética Sagitarios terminada, foto 7" loading="lazy">
                 </div>
                 <div class="cover-dots"><button type="button" class="cover-dot is-active" aria-label="Ver foto 1 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 2 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 3 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 4 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 5 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 6 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 7 de 7"></button></div>
             </figure>
@@ -100,65 +85,57 @@
             <h2>Del render a la obra</h2>
             <p class="section-intro">Desliza cada imagen para comparar el render del proyecto con el resultado construido.</p>
             <div class="compare-list">
-            <figure class="compare-item">
-                <div class="compare" style="--ratio: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
-                    <img class="compare-img compare-after" src="../assets/images/sagitarios-1-obra.jpg" alt="Obra terminada: Vista general del salón" loading="lazy">
-                    <div class="compare-top">
-                        <img class="compare-img compare-before" src="../assets/images/sagitarios-1-render.jpg" alt="Render del proyecto: Vista general del salón" loading="lazy">
+                <figure class="compare-item">
+                    <div class="compare" style="--ratio: 1206 / 631; --ratio-m: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
+                        <img class="compare-img compare-after" src="../assets/images/sagitarios-1-obra.jpg" alt="Después, obra terminada: Nicho en arco con repisas y luz cálida" loading="lazy" draggable="false">
+                        <div class="compare-top">
+                            <img class="compare-img compare-before" src="../assets/images/sagitarios-1-render.jpg" alt="Antes, render del proyecto: Nicho en arco con repisas y luz cálida" loading="lazy" draggable="false">
+                        </div>
+                        <span class="compare-tag is-left">Antes</span>
+                        <span class="compare-tag is-right">Después</span>
+                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar antes y después: Nicho de lavado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
                     </div>
-                    <span class="compare-tag is-left">Render</span>
-                    <span class="compare-tag is-right">Obra</span>
-                    <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar render y obra: Vista general" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-                        <span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-                    </div>
-                </div>
-                <figcaption>01 · Vista general</figcaption>
-            </figure>
+                    <figcaption><strong>01 · Nicho de lavado</strong><span>Arrastra o usa las flechas del teclado</span></figcaption>
+                </figure>
 
-            <figure class="compare-item">
-                <div class="compare" style="--ratio: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
-                    <img class="compare-img compare-after" src="../assets/images/sagitarios-2-obra.jpg" alt="Obra terminada: Área de corte con espejos y piso de mármol" loading="lazy">
-                    <div class="compare-top">
-                        <img class="compare-img compare-before" src="../assets/images/sagitarios-2-render.jpg" alt="Render del proyecto: Área de corte con espejos y piso de mármol" loading="lazy">
+                <figure class="compare-item">
+                    <div class="compare" style="--ratio: 1206 / 631; --ratio-m: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
+                        <img class="compare-img compare-after" src="../assets/images/sagitarios-2-obra.jpg" alt="Después, obra terminada: Comparación 2, render y obra" loading="lazy" draggable="false">
+                        <div class="compare-top">
+                            <img class="compare-img compare-before" src="../assets/images/sagitarios-2-render.jpg" alt="Antes, render del proyecto: Comparación 2, render y obra" loading="lazy" draggable="false">
+                        </div>
+                        <span class="compare-tag is-left">Antes</span>
+                        <span class="compare-tag is-right">Después</span>
+                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar antes y después: comparación 2" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
                     </div>
-                    <span class="compare-tag is-left">Render</span>
-                    <span class="compare-tag is-right">Obra</span>
-                    <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar render y obra: Área de corte" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-                        <span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-                    </div>
-                </div>
-                <figcaption>02 · Área de corte</figcaption>
-            </figure>
+                    <figcaption><strong>02 · Comparación 02</strong><span>Arrastra o usa las flechas del teclado</span></figcaption>
+                </figure>
 
-            <figure class="compare-item">
-                <div class="compare" style="--ratio: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
-                    <img class="compare-img compare-after" src="../assets/images/sagitarios-3-obra.jpg" alt="Obra terminada: Área de lavado con nicho en arco y luz cálida" loading="lazy">
-                    <div class="compare-top">
-                        <img class="compare-img compare-before" src="../assets/images/sagitarios-3-render.jpg" alt="Render del proyecto: Área de lavado con nicho en arco y luz cálida" loading="lazy">
+                <figure class="compare-item">
+                    <div class="compare" style="--ratio: 1206 / 631; --ratio-m: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
+                        <img class="compare-img compare-after" src="../assets/images/sagitarios-3-obra.jpg" alt="Después, obra terminada: Comparación 3, render y obra" loading="lazy" draggable="false">
+                        <div class="compare-top">
+                            <img class="compare-img compare-before" src="../assets/images/sagitarios-3-render.jpg" alt="Antes, render del proyecto: Comparación 3, render y obra" loading="lazy" draggable="false">
+                        </div>
+                        <span class="compare-tag is-left">Antes</span>
+                        <span class="compare-tag is-right">Después</span>
+                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar antes y después: comparación 3" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
                     </div>
-                    <span class="compare-tag is-left">Render</span>
-                    <span class="compare-tag is-right">Obra</span>
-                    <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar render y obra: Área de lavado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-                        <span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-                    </div>
-                </div>
-                <figcaption>03 · Área de lavado</figcaption>
-            </figure>
+                    <figcaption><strong>03 · Comparación 03</strong><span>Arrastra o usa las flechas del teclado</span></figcaption>
+                </figure>
 
-            <figure class="compare-item">
-                <div class="compare" style="--ratio: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
-                    <img class="compare-img compare-after" src="../assets/images/sagitarios-4-obra.jpg" alt="Obra terminada: Celosía curva de madera con patrón geométrico" loading="lazy">
-                    <div class="compare-top">
-                        <img class="compare-img compare-before" src="../assets/images/sagitarios-4-render.jpg" alt="Render del proyecto: Celosía curva de madera con patrón geométrico" loading="lazy">
+                <figure class="compare-item">
+                    <div class="compare" style="--ratio: 1206 / 631; --ratio-m: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
+                        <img class="compare-img compare-after" src="../assets/images/sagitarios-4-obra.jpg" alt="Después, obra terminada: Comparación 4, render y obra" loading="lazy" draggable="false">
+                        <div class="compare-top">
+                            <img class="compare-img compare-before" src="../assets/images/sagitarios-4-render.jpg" alt="Antes, render del proyecto: Comparación 4, render y obra" loading="lazy" draggable="false">
+                        </div>
+                        <span class="compare-tag is-left">Antes</span>
+                        <span class="compare-tag is-right">Después</span>
+                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar antes y después: comparación 4" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
                     </div>
-                    <span class="compare-tag is-left">Render</span>
-                    <span class="compare-tag is-right">Obra</span>
-                    <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar render y obra: Celosía de madera" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-                        <span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-                    </div>
-                </div>
-                <figcaption>04 · Celosía de madera</figcaption>
-            </figure>
+                    <figcaption><strong>04 · Comparación 04</strong><span>Arrastra o usa las flechas del teclado</span></figcaption>
+                </figure>
             </div>
         </section>
 
@@ -184,16 +161,6 @@
         </nav>
     </main>
 
-    <dialog id="lightbox" class="lightbox" aria-label="Imagen ampliada">
-        <button type="button" class="lightbox-close" aria-label="Cerrar"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
-        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Imagen anterior"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <figure>
-            <img src="" alt="">
-            <figcaption></figcaption>
-        </figure>
-        <button type="button" class="lightbox-nav lightbox-next" aria-label="Imagen siguiente"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-    </dialog>
-
     <footer>
         <p>&copy; 2026 Adarve Arquitectura. Todos los derechos reservados.</p>
         <div class="social-footer"><a href="https://www.instagram.com/adarve_arquitectura" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.facebook.com/share/1FkZQYMe5A/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a href="https://www.tiktok.com/@adarve_arquitectura" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a></div>
@@ -203,25 +170,5 @@
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
         <span>Escríbenos</span>
     </a>
-    <script>
-        (function () {
-            var root = document.querySelector('.cover-carousel');
-            if (!root) return;
-            var slides = root.querySelectorAll('.cover-slide'), dots = root.querySelectorAll('.cover-dot');
-            var i = 0, timer = null;
-            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            function go(n) {
-                slides[i].classList.remove('is-active'); dots[i].classList.remove('is-active');
-                i = (n + slides.length) % slides.length;
-                slides[i].classList.add('is-active'); dots[i].classList.add('is-active');
-            }
-            function start() { if (!reduce && !timer) timer = setInterval(function () { go(i + 1); }, 4000); }
-            function stop() { clearInterval(timer); timer = null; }
-            dots.forEach(function (d, n) { d.addEventListener('click', function () { go(n); stop(); start(); }); });
-            root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', start);
-            root.addEventListener('focusin', stop); root.addEventListener('focusout', start);
-            start();
-        })();
-    </script>
 </body>
 </html>
