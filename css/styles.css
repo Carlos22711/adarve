@@ -385,6 +385,123 @@ fieldset.field legend { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.
 .more-projects a { display: inline-block; padding: 0.6rem 0; color: var(--texto); text-decoration: none; border-bottom: 2px solid var(--acento); transition: color 0.3s; }
 .more-projects a:hover, .more-projects a:focus-visible { color: var(--acento); outline: none; }
 
+/* ---------- PÁGINA DE PROYECTO (nuevo formato) ---------- */
+.content-section.project { max-width: 1200px; }
+.project-hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: center; }
+.project-hero h1 { font-size: clamp(2rem, 4.2vw, 3.2rem); font-weight: 300; letter-spacing: 1px; line-height: 1.15; }
+.project-lead { margin-top: 1.25rem; font-size: 1.2rem; line-height: 1.7; color: #555; max-width: 520px; }
+.project-facts { display: flex; flex-wrap: wrap; gap: 1.25rem 2.5rem; margin-top: 2.25rem; padding-top: 1.5rem; border-top: 1px solid var(--gris-claro); }
+.project-facts dt { font-size: 0.8rem; color: #777; margin-bottom: 0.15rem; }
+.project-facts dd { font-size: 1rem; font-weight: 600; }
+.project-cover { margin: 0; }
+.project-cover img { display: block; width: 100%; height: auto; max-height: 82vh; object-fit: contain; margin: 0 auto; }
+
+.project-section { margin-top: 5.5rem; }
+.project-section h2 { font-size: 1.5rem; font-weight: 400; letter-spacing: 0.5px; line-height: 1.2; padding-left: 1rem; border-left: 4px solid var(--acento); margin-bottom: 1.25rem; }
+.section-intro { color: #666; max-width: 640px; margin: -0.25rem 0 1.75rem 1.25rem; }
+.prose-block { max-width: 720px; margin-left: 1.25rem; }
+.prose-block p { font-size: 1.1rem; line-height: 1.85; color: #444; }
+
+/* Comparador render / obra */
+.compare {
+    --split: 50%;
+    position: relative;
+    aspect-ratio: var(--ratio, 4 / 3);
+    max-height: 84vh;                  /* nunca más alto que la pantalla */
+    overflow: hidden;
+    background: #d9d9d9;
+    touch-action: pan-y;               /* el dedo desliza la barra en horizontal; en vertical sigue haciendo scroll */
+    user-select: none; -webkit-user-select: none;
+    cursor: ew-resize;
+}
+.compare-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; -webkit-user-drag: none; }
+.compare-after { object-position: var(--pos-after, 50% 50%); }
+.compare-before { object-position: var(--pos-before, 50% 50%); }
+.compare-top { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--split)) 0 0); }
+.compare-handle { position: absolute; top: 0; bottom: 0; left: var(--split); width: 48px; margin-left: -24px; display: flex; align-items: center; justify-content: center; cursor: ew-resize; outline: none; }
+.compare-handle::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+.compare-knob { position: relative; width: 46px; height: 46px; border-radius: 50%; background: #fff; color: var(--acento); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.38); }
+.compare-handle:focus-visible .compare-knob { outline: 3px solid var(--acento); outline-offset: 3px; }
+.compare-tag { position: absolute; bottom: 1rem; padding: 0.45rem 0.9rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; background: rgba(33,33,33,0.82); color: #fff; pointer-events: none; }
+.compare-tag.is-left { left: 1rem; }
+.compare-tag.is-right { right: 1rem; }
+.compare.is-hinting .compare-top { transition: clip-path 0.7s ease; }
+.compare.is-hinting .compare-handle { transition: left 0.7s ease; }
+
+/* Lista de comparadores antes / después */
+.compare-list { display: grid; gap: 3rem; }
+.compare-item { margin: 0; }
+.compare-item figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1rem; padding-top: 0.7rem; font-size: 0.95rem; color: #555; }
+.compare-item figcaption strong { font-weight: 600; color: var(--texto); }
+.compare-item figcaption span { font-size: 0.85rem; color: #888; }
+
+/* Portada con carrusel de fotos */
+.cover-stage { position: relative; aspect-ratio: var(--cover-ratio, 4 / 3); max-height: 82vh; width: 100%; overflow: hidden; background: #e6e3df; }
+.cover-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease; }
+.cover-slide.is-active { opacity: 1; }
+.cover-dots { display: flex; justify-content: center; gap: 0.2rem; margin-top: 0.5rem; }
+.cover-dot { width: 28px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
+.cover-dot::after { content: ""; position: absolute; left: 50%; top: 50%; width: 22px; height: 3px; margin: -1.5px 0 0 -11px; background: #cfcac4; transition: background 0.3s; }
+.cover-dot.is-active::after { background: var(--acento); }
+.cover-dot:focus-visible { outline: 2px solid var(--acento); outline-offset: 1px; }
+
+/* Galerías (imágenes completas, sin recortes) */
+.shots { columns: 2; column-gap: 1.5rem; }
+.shot { break-inside: avoid; margin: 0 0 1.5rem; }
+.shot a { display: block; overflow: hidden; cursor: zoom-in; }
+.shot img { display: block; width: 100%; height: auto; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.shot a:hover img { transform: scale(1.02); }
+.shot figcaption { padding-top: 0.6rem; font-size: 0.92rem; color: #555; }
+.tag { margin-right: 0.4rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--acento); }
+
+/* Materiales y detalles */
+.details { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 3rem; margin-left: 1.25rem; }
+.details li { padding: 1rem 0; border-top: 1px solid var(--gris-claro); }
+.details strong { display: block; font-weight: 600; }
+.details span { color: #555; font-size: 0.97rem; }
+
+/* Llamado a la acción y siguiente proyecto */
+.project-cta { margin-top: 6rem; padding: 3.5rem 1.5rem; background: var(--texto); color: var(--blanco); text-align: center; }
+.project-cta h2 { padding: 0; border: 0; font-weight: 300; font-size: 1.7rem; margin-bottom: 0.6rem; }
+.project-cta p { color: #cfcfcf; margin-bottom: 1.75rem; }
+.project-next { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--gris-claro); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; }
+.next-link { display: block; text-decoration: none; color: var(--texto); padding: 0.25rem 0; }
+.next-link span { display: block; font-size: 0.85rem; color: #777; }
+.next-link strong { font-size: 1.6rem; font-weight: 400; transition: color 0.3s; }
+.next-link:hover strong, .next-link:focus-visible strong { color: var(--acento); outline: none; }
+.all-link { color: var(--texto); text-decoration: none; padding: 0.6rem 0; border-bottom: 2px solid var(--acento); transition: color 0.3s; }
+.all-link:hover, .all-link:focus-visible { color: var(--acento); outline: none; }
+
+/* Visor de imágenes (lightbox) */
+body.modal-open { overflow: hidden; }
+.lightbox { border: 0; padding: 0; width: 100%; max-width: none; height: 100%; max-height: none; background: rgba(17,17,17,0.96); color: #fff; }
+.lightbox[open] { display: flex; align-items: center; justify-content: center; }
+.lightbox::backdrop { background: rgba(0,0,0,0.9); }
+.lightbox figure { margin: 0; max-width: 92vw; text-align: center; }
+.lightbox img { display: block; max-width: 92vw; max-height: 80vh; max-height: 80svh; width: auto; height: auto; margin: 0 auto; object-fit: contain; }
+.lightbox figcaption { margin-top: 0.8rem; font-size: 0.92rem; color: #ddd; min-height: 1.4em; }
+.lightbox-close, .lightbox-nav { position: absolute; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border: 0; border-radius: 50%; background: rgba(255,255,255,0.14); color: #fff; cursor: pointer; transition: background 0.3s; }
+.lightbox-close:hover, .lightbox-nav:hover, .lightbox-close:focus-visible, .lightbox-nav:focus-visible { background: var(--acento); outline: none; }
+.lightbox-close { top: 1rem; right: 1rem; }
+.lightbox-nav { top: 50%; margin-top: -24px; }
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
+.lightbox.is-single .lightbox-nav { display: none; }
+
+@media screen and (max-width: 900px) {
+    .project-hero { grid-template-columns: 1fr; gap: 2rem; }
+    .details { grid-template-columns: 1fr; }
+}
+@media screen and (max-width: 768px) {
+    .compare { aspect-ratio: var(--ratio-m, var(--ratio, 4 / 3)); max-height: none; }
+    .project-section { margin-top: 4rem; }
+    .shots { columns: 1; }
+    .section-intro, .prose-block, .details { margin-left: 0; }
+    .project-cta { margin-top: 4.5rem; padding: 2.5rem 1.25rem; }
+    .lightbox-nav { top: auto; bottom: 1.25rem; margin-top: 0; }
+    .lightbox img { max-height: 72vh; max-height: 72svh; }
+}
+
 /* ---------- LEGAL ---------- */
 .legal-links {
     display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
@@ -480,6 +597,7 @@ fieldset.field legend { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .compare.is-hinting .compare-top, .compare.is-hinting .compare-handle { transition: none !important; }
     .intro-slide { transition: none !important; }
     *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
 }
