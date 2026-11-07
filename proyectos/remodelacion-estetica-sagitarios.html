@@ -22,16 +22,16 @@
     <meta property="og:image:alt" content="Interior de la Estética Sagitarios con lámparas lineales luminosas y plantas colgantes">
     <meta name="twitter:card" content="summary_large_image">
     <!-- /SEO -->
-    <link rel="stylesheet" href="../css/styles.css?v=13">
+    <link rel="stylesheet" href="../css/styles.css?v=14">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    <script src="../js/main.js?v=13" defer></script>
+    <script src="../js/main.js?v=14" defer></script>
 </head>
 <body>
     <header class="navbar">
         <div class="logo">
             <a href="../index.html">
-                <img src="../assets/images/logo.png?v=13" alt="Adarve Arquitectura">
+                <img src="../assets/images/logo.png?v=14" alt="Adarve Arquitectura">
             </a>
         </div>
         <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
@@ -48,33 +48,118 @@
         </nav>
     </header>
 
-    <main class="content-section">
-        <div class="project-header fade-in" style="text-align: center;">
-            <h1 style="font-weight: 300; letter-spacing: 2px; margin-bottom: 1rem;">Remodelación Estética Sagitarios</h1>
-            <p style="color: var(--acento); font-weight: bold; margin-bottom: 2rem; letter-spacing: 1px;">Comercial • Interiorismo • 2026</p>
-            <p style="max-width: 800px; margin: 0 auto; color: #555; line-height: 1.8;">Diseño y remodelación integral de espacio comercial para Estética Sagitarios. El proyecto se enfoca en crear una atmósfera moderna, acogedora y funcional, utilizando iluminación cálida, texturas contrastantes y una distribución óptima para los servicios de salón.</p>
-        </div>
+    <main class="content-section project">
+        <header class="project-hero">
+            <div class="project-hero-text fade-in">
+                <h1>Remodelación Estética Sagitarios</h1>
+                <p class="project-lead">Una atmósfera moderna, acogedora y funcional para un salón de belleza, construida con iluminación cálida y texturas contrastantes.</p>
+                <dl class="project-facts">
+                    <div><dt>Tipo</dt><dd>Salón de belleza</dd></div>
+                    <div><dt>Alcance</dt><dd>Diseño y remodelación integral</dd></div>
+                    <div><dt>Año</dt><dd>2026</dd></div>
+                    <!-- Cuando tengas el dato, descomenta esta línea: <div><dt>Superficie</dt><dd>000 m²</dd></div> -->
+                </dl>
+            </div>
+            <figure class="project-cover fade-in">
+                <img src="../assets/images/sagitarios-1.jpg" alt="Interior de la Estética Sagitarios con lámparas lineales luminosas, plantas colgantes y piso de mármol" fetchpriority="high">
+            </figure>
+        </header>
 
-        <div class="project-gallery slide-up">
-            <img src="../assets/images/sagitarios-1.jpg" alt="Interior de la Estética Sagitarios con lámparas lineales luminosas, plantas colgantes y piso de mármol">
-            <img src="../assets/images/sagitarios-2.jpg" alt="Celosía curva de madera con patrón geométrico en la Estética Sagitarios">
-            <img src="../assets/images/sagitarios-3.jpg" alt="Render del área de lavado con nicho en arco, iluminación cálida y paneles de madera">
-            <img src="../assets/images/sagitarios-4.jpg" alt="Render del área de corte con espejos en nichos de arco y piso de mármol">
-        </div>
-        
+        <section class="project-section slide-up">
+            <h2>La idea</h2>
+            <div class="prose-block">
+                <p>Diseño y remodelación integral de espacio comercial para Estética Sagitarios. El proyecto se enfoca en crear una atmósfera moderna, acogedora y funcional, utilizando iluminación cálida, texturas contrastantes y una distribución óptima para los servicios de salón.</p>
+            </div>
+        </section>
 
-        <nav class="more-projects" aria-label="Otros proyectos">
-            <h2>Otros proyectos</h2>
-            <ul>
-                <li><a href="taxco.html">Taxco</a></li>
-                <li><a href="cuetzalan.html">Cuetzalan</a></li>
+        <section class="project-section slide-up">
+            <h2>Del render a la obra</h2>
+            <p class="section-intro">Desliza para comparar el render del proyecto con el resultado construido.</p>
+            <!-- COMPARADOR: before = render (arriba, se recorta) · after = obra (abajo).
+                 --ratio: proporción en escritorio · --ratio-m: proporción en celular
+                 --pos-before / --pos-after: encuadre de cada imagen (x% y%) para alinear el par -->
+            <div class="compare" style="--ratio: 3 / 2; --ratio-m: 4 / 5; --pos-before: 50% 50%; --pos-after: 50% 45%;">
+                <img class="compare-img compare-after" src="../assets/images/sagitarios-1.jpg" alt="Obra terminada: interior de la Estética Sagitarios" loading="lazy">
+                <div class="compare-top">
+                    <img class="compare-img compare-before" src="../assets/images/sagitarios-4.jpg" alt="Render del proyecto: área de corte de la Estética Sagitarios" loading="lazy">
+                </div>
+                <span class="compare-tag is-left">Render</span>
+                <span class="compare-tag is-right">Obra</span>
+                <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar el render con la obra" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                    <span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section slide-up">
+            <h2>Renders</h2>
+            <p class="section-intro">Así se planeó el espacio antes de construirlo. Toca cualquier imagen para verla en grande.</p>
+            <div class="shots">
+                <figure class="shot">
+                    <a href="../assets/images/sagitarios-4.jpg" data-lightbox data-caption="Render · Área de corte">
+                        <img src="../assets/images/sagitarios-4.jpg" alt="Render del área de corte con espejos en nichos de arco y piso de mármol" loading="lazy">
+                    </a>
+                    <figcaption><span class="tag">Render</span> Área de corte</figcaption>
+                </figure>
+                <figure class="shot">
+                    <a href="../assets/images/sagitarios-3.jpg" data-lightbox data-caption="Render · Área de lavado">
+                        <img src="../assets/images/sagitarios-3.jpg" alt="Render del área de lavado con nicho en arco, iluminación cálida y paneles de madera" loading="lazy">
+                    </a>
+                    <figcaption><span class="tag">Render</span> Área de lavado</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="project-section slide-up">
+            <h2>El resultado</h2>
+            <p class="section-intro">El espacio terminado.</p>
+            <div class="shots">
+                <figure class="shot">
+                    <a href="../assets/images/sagitarios-1.jpg" data-lightbox data-caption="Obra · Vista general">
+                        <img src="../assets/images/sagitarios-1.jpg" alt="Interior de la Estética Sagitarios con lámparas lineales luminosas, plantas colgantes y piso de mármol" loading="lazy">
+                    </a>
+                    <figcaption><span class="tag">Obra</span> Vista general</figcaption>
+                </figure>
+                <figure class="shot">
+                    <a href="../assets/images/sagitarios-2.jpg" data-lightbox data-caption="Obra · Celosía de madera">
+                        <img src="../assets/images/sagitarios-2.jpg" alt="Celosía curva de madera con patrón geométrico en la Estética Sagitarios" loading="lazy">
+                    </a>
+                    <figcaption><span class="tag">Obra</span> Celosía de madera</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="project-section slide-up">
+            <h2>Materiales y detalles</h2>
+            <ul class="details">
+                <li><strong>Celosía de madera</strong><span>Divisor curvo con patrón geométrico</span></li>
+                <li><strong>Mármol negro</strong><span>Muro de fondo con veta marcada</span></li>
+                <li><strong>Nichos en arco</strong><span>Marcos que enmarcan las estaciones de trabajo</span></li>
+                <li><strong>Luz cálida</strong><span>Luminarias lineales, apliques e iluminación empotrada</span></li>
             </ul>
-        </nav>
+        </section>
 
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="../proyectos.html" class="btn" style="display:inline-block; padding: 1rem 2.5rem; background: var(--texto); color: #fff; text-decoration: none; font-weight: bold; letter-spacing: 1px;">Ver todos los proyectos</a>
-        </div>
+        <section class="project-cta slide-up">
+            <h2>¿Tienes un espacio en mente?</h2>
+            <p>Cuéntanos qué necesitas y te respondemos por WhatsApp.</p>
+            <a href="https://wa.me/525650339854?text=Hola%20Adarve%20Arquitectura,%20me%20gustar%C3%ADa%20solicitar%20m%C3%A1s%20informaci%C3%B3n." class="btn" target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a>
+        </section>
+
+        <nav class="project-next" aria-label="Más proyectos">
+            <a href="taxco.html" class="next-link"><span>Siguiente proyecto</span><strong>Taxco &rarr;</strong></a>
+            <a href="../proyectos.html" class="all-link">Todos los proyectos</a>
+        </nav>
     </main>
+
+    <dialog id="lightbox" class="lightbox" aria-label="Imagen ampliada">
+        <button type="button" class="lightbox-close" aria-label="Cerrar"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Imagen anterior"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <figure>
+            <img src="" alt="">
+            <figcaption></figcaption>
+        </figure>
+        <button type="button" class="lightbox-nav lightbox-next" aria-label="Imagen siguiente"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </dialog>
 
     <footer>
         <p>&copy; 2026 Adarve Arquitectura. Todos los derechos reservados.</p>
