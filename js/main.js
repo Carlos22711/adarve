@@ -128,6 +128,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 '*Motivo:* ' + campos[1][1],
                 '*Mensaje:* ' + campos[2][1]
             ]);
+            form.reset();   // limpia el formulario después de enviar
+            form.querySelectorAll('.has-error').forEach(el => el.classList.remove('has-error'));
         });
         form.addEventListener('input', (e) => {
             const field = e.target.closest('.field');
@@ -143,10 +145,10 @@ document.addEventListener("DOMContentLoaded", () => {
         { id: 'ciudad', label: 'Ciudad/Colonia', type: 'text', required: true },
         { id: 'terreno', label: '¿Cuentas con terreno o inmueble?', type: 'select', required: true,
           options: ['Sí, tengo terreno', 'Sí, tengo inmueble', 'Todavía no'] },
-        { id: 'm2', label: '¿Cuántos m² tiene tu terreno?', type: 'text', optional: true, placeholder: 'Ej. 120' },
+        { id: 'm2', label: '¿Cuántos m² tiene tu terreno?', type: 'text', optional: true, format: 'number', decimal: true, suffix: ' m²', placeholder: 'Ej. 1,200' },
         { id: 'planos', label: '¿Tienes planos, estructura o algún levantamiento?', type: 'checks', optional: true,
           options: ['Planos', 'Estructura', 'Levantamiento', 'Ninguno'] },
-        { id: 'presupuesto', label: '¿Qué presupuesto tienes pensado?', type: 'text', optional: true, placeholder: 'Monto aproximado' },
+        { id: 'presupuesto', label: '¿Qué presupuesto tienes pensado?', type: 'text', optional: true, format: 'number', prefix: '$', placeholder: 'Ej. 4,000,000' },
         { id: 'inicio', label: '¿Cuándo te gustaría iniciar?', type: 'text', optional: true, placeholder: 'Ej. enero 2027' }
     ];
     const SERVICES = {
@@ -177,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return `<fieldset class="field" data-id="${f.id}"><legend>${labelHtml(f)}</legend>${f.options.map(o => `<label class="check"><input type="checkbox" name="${f.id}" value="${o}"> ${o}</label>`).join('')}</fieldset>`;
             }
             return `<div class="field" data-id="${f.id}"><label for="${id}">${labelHtml(f)}</label>
-                <input type="text" id="${id}" name="${f.id}" maxlength="100"${f.autocomplete ? ` autocomplete="${f.autocomplete}"` : ''}${f.placeholder ? ` placeholder="${f.placeholder}"` : ''}></div>`;
+                <input type="text" id="${id}" name="${f.id}" maxlength="100"${f.format ? ` inputmode="${f.decimal ? 'decimal' : 'numeric'}" data-format="number"${f.decimal ? ' data-decimal="1"' : ''}` : ''}${f.autocomplete ? ` autocomplete="${f.autocomplete}"` : ''}${f.placeholder ? ` placeholder="${f.placeholder}"` : ''}></div>`;
         };
         const valueOf = (f) => {
             if (f.type === 'checks') return Array.from(sform.querySelectorAll(`input[name="${f.id}"]:checked`)).map(i => i.value).join(', ');
@@ -201,6 +203,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 dialog.scrollTop = 0;
                 title.focus();
             });
+        });
+
+        // Da formato de miles (4,000,000) mientras se escribe, conservando la posición del cursor
+        const formatNumber = (raw, decimal) => {
+            let s = raw.replace(/[^\d.]/g, '');
+            if (!decimal) s = s.replace(/\./g, '');
+            else {
+                const i = s.indexOf('.');
+                if (i !== -1) s = s.slice(0, i + 1) + s.slice(i + 1).replace(/\./g, '').slice(0, 2);
+            }
+            let [ent, dec] = s.split('.');
+            ent = ent.replace(/^0+(?=\d)/, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            return dec !== undefined ? ent + '.' + dec : ent;
+        };
+        sform.addEventListener('input', (e) => {
+            const el = e.target;
+            if (el.dataset.format !== 'number') return;
+            const pos = el.selectionStart;
+            const significativos = el.value.slice(0, pos).replace(/[^\d.]/g, '').length;
+            el.value = formatNumber(el.value, !!el.dataset.decimal);
+            let n = 0, nueva = 0;
+            while (nueva < el.value.length && n < significativos) { if (/[\d.]/.test(el.value[nueva])) n++; nueva++; }
+            el.setSelectionRange(nueva, nueva);
         });
 
         const cerrar = () => dialog.close();
@@ -232,9 +257,105 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             err.hidden = true;
             const lineas = ['Hola Adarve Arquitectura, tengo interés en este servicio: *' + actual.nombre + '*', ''];
-            actual.campos.forEach((f) => { const v = valueOf(f); if (v) lineas.push('*' + f.label.replace(/[¿?]/g, '') + ':* ' + v); });
+            actual.campos.forEach((f) => { const v = valueOf(f); if (v) lineas.push('*' + f.label.replace(/[¿?]/g, '') + ':* ' + (f.prefix || '') + v + (f.suffix || '')); });
             openWhatsApp(lineas);
+            dialog.close();   // cierra la ventana emergente al enviar
         });
+    }
+
+
+    // ---- Comparador render / obra (arrastrar) ----
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('.compare').forEach((el) => {
+        const handle = el.querySelector('.compare-handle');
+        let split = 50, dragging = false, startX = 0, startY = 0;
+
+        const setSplit = (v) => {
+            split = Math.max(0, Math.min(100, v));
+            el.style.setProperty('--split', split + '%');
+            handle.setAttribute('aria-valuenow', String(Math.round(split)));
+        };
+        const fromPointer = (e) => {
+            const r = el.getBoundingClientRect();
+            setSplit(((e.clientX - r.left) / r.width) * 100);
+        };
+
+        el.addEventListener('pointerdown', (e) => {
+            el.classList.remove('is-hinting');
+            startX = e.clientX; startY = e.clientY;
+            if (e.pointerType === 'mouse') {          // con mouse: salta al clic y arrastra
+                dragging = true; try { el.setPointerCapture(e.pointerId); } catch (_) {} fromPointer(e);
+            }
+        });
+        el.addEventListener('pointermove', (e) => {
+            if (!dragging && e.pointerType !== 'mouse' && e.buttons) {
+                // con el dedo: solo arrastra si el movimiento es horizontal (así el scroll vertical no mueve la barra)
+                const dx = Math.abs(e.clientX - startX), dy = Math.abs(e.clientY - startY);
+                if (dx > 6 && dx > dy) { dragging = true; try { el.setPointerCapture(e.pointerId); } catch (_) {} }
+            }
+            if (dragging) fromPointer(e);
+        });
+        const end = () => { dragging = false; };
+        ['pointerup', 'pointercancel', 'lostpointercapture'].forEach((t) => el.addEventListener(t, end));
+
+        handle.addEventListener('keydown', (e) => {
+            const step = e.shiftKey ? 10 : 5;
+            if (e.key === 'ArrowLeft') { setSplit(split - step); e.preventDefault(); }
+            else if (e.key === 'ArrowRight') { setSplit(split + step); e.preventDefault(); }
+            else if (e.key === 'Home') { setSplit(0); e.preventDefault(); }
+            else if (e.key === 'End') { setSplit(100); e.preventDefault(); }
+        });
+
+        // Pista de movimiento: al llegar a la vista, la barra se mueve un poco para mostrar que se desliza
+        if (!prefersReduced && 'IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                if (!entries[0].isIntersecting) return;
+                io.disconnect();
+                el.classList.add('is-hinting');
+                setTimeout(() => setSplit(36), 250);
+                setTimeout(() => setSplit(64), 1000);
+                setTimeout(() => setSplit(50), 1750);
+                setTimeout(() => el.classList.remove('is-hinting'), 2600);
+            }, { threshold: 0.6 });
+            io.observe(el);
+        }
+    });
+
+    // ---- Visor de imágenes (lightbox) ----
+    const lb = document.getElementById('lightbox');
+    const lbLinks = Array.from(document.querySelectorAll('[data-lightbox]'));
+    if (lb && lbLinks.length && typeof lb.showModal === 'function') {
+        const lbImg = lb.querySelector('img'), lbCap = lb.querySelector('figcaption');
+        let idx = 0;
+        lb.classList.toggle('is-single', lbLinks.length < 2);
+        const show = (i) => {
+            idx = (i + lbLinks.length) % lbLinks.length;
+            const a = lbLinks[idx], thumb = a.querySelector('img');
+            lbImg.src = a.href;
+            lbImg.alt = thumb ? thumb.alt : '';
+            lbCap.textContent = a.dataset.caption || '';
+        };
+        lbLinks.forEach((a, i) => a.addEventListener('click', (e) => {
+            e.preventDefault();
+            show(i);
+            document.body.classList.add('modal-open');
+            lb.showModal();
+        }));
+        lb.querySelector('.lightbox-close').addEventListener('click', () => lb.close());
+        lb.querySelector('.lightbox-prev').addEventListener('click', () => show(idx - 1));
+        lb.querySelector('.lightbox-next').addEventListener('click', () => show(idx + 1));
+        lb.addEventListener('click', (e) => { if (e.target === lb) lb.close(); });
+        lb.addEventListener('close', () => document.body.classList.remove('modal-open'));
+        lb.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') show(idx - 1);
+            if (e.key === 'ArrowRight') show(idx + 1);
+        });
+        let tx = 0;                                                  // deslizar con el dedo para cambiar de imagen
+        lb.addEventListener('touchstart', (e) => { tx = e.changedTouches[0].clientX; }, { passive: true });
+        lb.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - tx;
+            if (Math.abs(dx) > 60) show(idx + (dx < 0 ? 1 : -1));
+        }, { passive: true });
     }
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
