@@ -321,6 +321,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // ---- Portada con carrusel (Estética Sagitarios) ----
+    document.querySelectorAll('.cover-carousel').forEach((root) => {
+        const slides = root.querySelectorAll('.cover-slide'), dots = root.querySelectorAll('.cover-dot');
+        if (slides.length < 2) return;
+        let cur = 0, timer = null;
+        const go = (n) => {
+            slides[cur].classList.remove('is-active'); dots[cur].classList.remove('is-active');
+            cur = (n + slides.length) % slides.length;
+            slides[cur].classList.add('is-active'); dots[cur].classList.add('is-active');
+        };
+        const start = () => { if (!prefersReduced && !timer) timer = setInterval(() => go(cur + 1), 4000); };
+        const stop = () => { clearInterval(timer); timer = null; };
+        dots.forEach((d, n) => d.addEventListener('click', () => { go(n); stop(); start(); }));
+        root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', start);
+        root.addEventListener('focusin', stop); root.addEventListener('focusout', start);
+        start();
+    });
+
     // ---- Visor de imágenes (lightbox) ----
     const lb = document.getElementById('lightbox');
     const lbLinks = Array.from(document.querySelectorAll('[data-lightbox]'));
