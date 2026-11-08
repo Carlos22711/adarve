@@ -338,11 +338,24 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.cover-carousel').forEach((root) => {
         const slides = root.querySelectorAll('.cover-slide'), dots = root.querySelectorAll('.cover-dot');
         if (slides.length < 2) return;
+        const stage = root.querySelector('.cover-stage');
         let cur = 0, timer = null;
+        // El marco toma la proporción real de la foto que se está mostrando (se ve completa, sin franjas)
+        const ajustar = (i) => {
+            const img = slides[i].querySelector('img');
+            if (img && img.naturalWidth && img.naturalHeight) stage.style.aspectRatio = img.naturalWidth + ' / ' + img.naturalHeight;
+        };
+        slides.forEach((s, i) => {
+            const img = s.querySelector('img');
+            if (!img) return;
+            img.addEventListener('load', () => { if (i === cur) ajustar(i); });
+        });
+        ajustar(0);
         const go = (n) => {
             slides[cur].classList.remove('is-active'); dots[cur].classList.remove('is-active');
             cur = (n + slides.length) % slides.length;
             slides[cur].classList.add('is-active'); dots[cur].classList.add('is-active');
+            ajustar(cur);
         };
         const start = () => { if (!prefersReduced && !timer) timer = setInterval(() => go(cur + 1), 4000); };
         const stop = () => { clearInterval(timer); timer = null; };
