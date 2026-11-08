@@ -22,10 +22,10 @@
     <meta property="og:image:alt" content="Interior de la Estética Sagitarios con lámparas lineales luminosas y plantas colgantes">
     <meta name="twitter:card" content="summary_large_image">
     <!-- /SEO -->
-    <link rel="stylesheet" href="../css/styles.css?v=15">
+    <link rel="stylesheet" href="../css/styles.css?v=16">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    <script src="../js/main.js?v=16" defer></script>
+    <script src="../js/main.js?v=17" defer></script>
 </head>
 <body>
     <header class="navbar">
@@ -51,7 +51,7 @@
     <main class="content-section project">
         <header class="project-hero">
             <div class="project-hero-text fade-in">
-                <h1>Remodelación Estética Sagitarios</h1>
+                <h1><span class="project-eyebrow">Remodelación</span>Estética Sagitarios</h1>
                 <p class="project-lead">Una atmósfera moderna, acogedora y funcional para un salón de belleza, construida con iluminación cálida y texturas contrastantes.</p>
                 <dl class="project-facts">
                     <div><dt>Tipo</dt><dd>Salón de belleza</dd></div>
@@ -62,13 +62,27 @@
             </div>
             <figure class="project-cover cover-carousel fade-in" aria-roledescription="carrusel" aria-label="Fotos de la obra terminada">
                 <div class="cover-stage">
-                    <img class="cover-slide is-active" src="../assets/images/sagitarios-1-obra.jpg" alt="Estética Sagitarios terminada, nicho de lavado" fetchpriority="high">
-                    <img class="cover-slide" src="../assets/images/sagitarios-2-obra.jpg" alt="Estética Sagitarios terminada, foto 2" loading="lazy">
-                    <img class="cover-slide" src="../assets/images/sagitarios-3-obra.jpg" alt="Estética Sagitarios terminada, foto 3" loading="lazy">
-                    <img class="cover-slide" src="../assets/images/sagitarios-4-obra.jpg" alt="Estética Sagitarios terminada, foto 4" loading="lazy">
-                    <img class="cover-slide" src="../assets/images/sagitarios-5-obra.jpg" alt="Estética Sagitarios terminada, foto 5" loading="lazy">
-                    <img class="cover-slide" src="../assets/images/sagitarios-6-obra.jpg" alt="Estética Sagitarios terminada, foto 6" loading="lazy">
-                    <img class="cover-slide" src="../assets/images/sagitarios-7-obra.jpg" alt="Estética Sagitarios terminada, foto 7" loading="lazy">
+                    <div class="cover-slide is-active" style="--img: url('../assets/images/sagitarios-1-obra.jpg')">
+                        <img src="../assets/images/sagitarios-1-obra.jpg" alt="Estética Sagitarios terminada, nicho de lavado" fetchpriority="high">
+                    </div>
+                    <div class="cover-slide" style="--img: url('../assets/images/sagitarios-2-obra.jpg')">
+                        <img src="../assets/images/sagitarios-2-obra.jpg" alt="Estética Sagitarios terminada, foto 2" loading="lazy">
+                    </div>
+                    <div class="cover-slide" style="--img: url('../assets/images/sagitarios-3-obra.jpg')">
+                        <img src="../assets/images/sagitarios-3-obra.jpg" alt="Estética Sagitarios terminada, foto 3" loading="lazy">
+                    </div>
+                    <div class="cover-slide" style="--img: url('../assets/images/sagitarios-4-obra.jpg')">
+                        <img src="../assets/images/sagitarios-4-obra.jpg" alt="Estética Sagitarios terminada, foto 4" loading="lazy">
+                    </div>
+                    <div class="cover-slide" style="--img: url('../assets/images/sagitarios-5-obra.jpg')">
+                        <img src="../assets/images/sagitarios-5-obra.jpg" alt="Estética Sagitarios terminada, foto 5" loading="lazy">
+                    </div>
+                    <div class="cover-slide" style="--img: url('../assets/images/sagitarios-6-obra.jpg')">
+                        <img src="../assets/images/sagitarios-6-obra.jpg" alt="Estética Sagitarios terminada, foto 6" loading="lazy">
+                    </div>
+                    <div class="cover-slide" style="--img: url('../assets/images/sagitarios-7-obra.jpg')">
+                        <img src="../assets/images/sagitarios-7-obra.jpg" alt="Estética Sagitarios terminada, foto 7" loading="lazy">
+                    </div>
                 </div>
                 <div class="cover-dots"><button type="button" class="cover-dot is-active" aria-label="Ver foto 1 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 2 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 3 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 4 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 5 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 6 de 7"></button><button type="button" class="cover-dot" aria-label="Ver foto 7 de 7"></button></div>
             </figure>
@@ -83,58 +97,58 @@
 
         <section class="project-section slide-up">
             <h2>Del render a la obra</h2>
-            <p class="section-intro">Desliza cada imagen para comparar el render del proyecto con el resultado construido.</p>
+            <p class="section-intro">Desliza cada imagen para ver cómo se transformó el espacio, del punto de partida al resultado final.</p>
             <div class="compare-list">
                 <figure class="compare-item">
-                    <div class="compare" style="--ratio: 1206 / 631; --ratio-m: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
-                        <img class="compare-img compare-after" src="../assets/images/sagitarios-1-obra.jpg" alt="Después, obra terminada: Nicho en arco con repisas y luz cálida" loading="lazy" draggable="false">
+                    <div class="compare" style="--ar: 1.9112;">
+                        <img class="compare-img compare-after" src="../assets/images/sagitarios-1-obra.jpg" alt="Resultado: nicho de lavado terminado" loading="lazy" draggable="false">
                         <div class="compare-top">
-                            <img class="compare-img compare-before" src="../assets/images/sagitarios-1-render.jpg" alt="Antes, render del proyecto: Nicho en arco con repisas y luz cálida" loading="lazy" draggable="false">
+                            <img class="compare-img compare-before" src="../assets/images/sagitarios-1-render.jpg" alt="Render del nicho de lavado" loading="lazy" draggable="false">
                         </div>
-                        <span class="compare-tag is-left">Antes</span>
-                        <span class="compare-tag is-right">Después</span>
-                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar antes y después: Nicho de lavado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
+                        <span class="compare-tag is-left">Render</span>
+                        <span class="compare-tag is-right">Resultado</span>
+                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar render y resultado: Nicho de lavado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
                     </div>
-                    <figcaption><strong>01 · Nicho de lavado</strong><span>Arrastra o usa las flechas del teclado</span></figcaption>
+                    <figcaption><strong>01 · Nicho de lavado</strong><span>Render → Resultado</span></figcaption>
                 </figure>
 
                 <figure class="compare-item">
-                    <div class="compare" style="--ratio: 1206 / 631; --ratio-m: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
-                        <img class="compare-img compare-after" src="../assets/images/sagitarios-2-obra.jpg" alt="Después, obra terminada: Comparación 2, render y obra" loading="lazy" draggable="false">
+                    <div class="compare" style="--ar: 1.7778;">
+                        <img class="compare-img compare-after" src="../assets/images/sagitarios-2-obra.jpg" alt="Resultado final, comparación 2" loading="lazy" draggable="false">
                         <div class="compare-top">
-                            <img class="compare-img compare-before" src="../assets/images/sagitarios-2-render.jpg" alt="Antes, render del proyecto: Comparación 2, render y obra" loading="lazy" draggable="false">
+                            <img class="compare-img compare-before" src="../assets/images/sagitarios-2-render.jpg" alt="Render del proyecto, comparación 2" loading="lazy" draggable="false">
                         </div>
-                        <span class="compare-tag is-left">Antes</span>
-                        <span class="compare-tag is-right">Después</span>
-                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar antes y después: comparación 2" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
+                        <span class="compare-tag is-left">Render</span>
+                        <span class="compare-tag is-right">Resultado</span>
+                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar render y resultado: Comparación 02" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
                     </div>
-                    <figcaption><strong>02 · Comparación 02</strong><span>Arrastra o usa las flechas del teclado</span></figcaption>
+                    <figcaption><strong>02 · Comparación 02</strong><span>Render → Resultado</span></figcaption>
                 </figure>
 
                 <figure class="compare-item">
-                    <div class="compare" style="--ratio: 1206 / 631; --ratio-m: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
-                        <img class="compare-img compare-after" src="../assets/images/sagitarios-3-obra.jpg" alt="Después, obra terminada: Comparación 3, render y obra" loading="lazy" draggable="false">
+                    <div class="compare" style="--ar: 1.7778;">
+                        <img class="compare-img compare-after" src="../assets/images/sagitarios-3-obra.jpg" alt="Resultado final, comparación 3" loading="lazy" draggable="false">
                         <div class="compare-top">
-                            <img class="compare-img compare-before" src="../assets/images/sagitarios-3-render.jpg" alt="Antes, render del proyecto: Comparación 3, render y obra" loading="lazy" draggable="false">
+                            <img class="compare-img compare-before" src="../assets/images/sagitarios-3-concepto.jpg" alt="Concepto en SketchUp, comparación 3" loading="lazy" draggable="false">
                         </div>
-                        <span class="compare-tag is-left">Antes</span>
-                        <span class="compare-tag is-right">Después</span>
-                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar antes y después: comparación 3" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
+                        <span class="compare-tag is-left">Concepto</span>
+                        <span class="compare-tag is-right">Resultado</span>
+                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar concepto y resultado: Comparación 03" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
                     </div>
-                    <figcaption><strong>03 · Comparación 03</strong><span>Arrastra o usa las flechas del teclado</span></figcaption>
+                    <figcaption><strong>03 · Comparación 03</strong><span>Concepto en SketchUp → Resultado</span></figcaption>
                 </figure>
 
                 <figure class="compare-item">
-                    <div class="compare" style="--ratio: 1206 / 631; --ratio-m: 3 / 2; --pos-before: 50% 50%; --pos-after: 50% 50%;">
-                        <img class="compare-img compare-after" src="../assets/images/sagitarios-4-obra.jpg" alt="Después, obra terminada: Comparación 4, render y obra" loading="lazy" draggable="false">
+                    <div class="compare" style="--ar: 1.7778;">
+                        <img class="compare-img compare-after" src="../assets/images/sagitarios-4-obra.jpg" alt="Resultado final, comparación 4" loading="lazy" draggable="false">
                         <div class="compare-top">
-                            <img class="compare-img compare-before" src="../assets/images/sagitarios-4-render.jpg" alt="Antes, render del proyecto: Comparación 4, render y obra" loading="lazy" draggable="false">
+                            <img class="compare-img compare-before" src="../assets/images/sagitarios-4-obra-negra.jpg" alt="Obra negra, comparación 4" loading="lazy" draggable="false">
                         </div>
-                        <span class="compare-tag is-left">Antes</span>
-                        <span class="compare-tag is-right">Después</span>
-                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar antes y después: comparación 4" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
+                        <span class="compare-tag is-left">Obra negra</span>
+                        <span class="compare-tag is-right">Resultado</span>
+                        <div class="compare-handle" role="slider" tabindex="0" aria-label="Deslizar para comparar obra negra y resultado: Comparación 04" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
                     </div>
-                    <figcaption><strong>04 · Comparación 04</strong><span>Arrastra o usa las flechas del teclado</span></figcaption>
+                    <figcaption><strong>04 · Comparación 04</strong><span>Obra negra → Resultado</span></figcaption>
                 </figure>
             </div>
         </section>
