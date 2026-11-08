@@ -340,24 +340,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.cover-carousel').forEach((root) => {
         const slides = root.querySelectorAll('.cover-slide'), dots = root.querySelectorAll('.cover-dot');
         if (slides.length < 2) return;
-        const stage = root.querySelector('.cover-stage');
         let cur = 0, timer = null;
-        // El marco toma la proporción real de la foto que se está mostrando (se ve completa, sin franjas)
-        const ajustar = (i) => {
-            const img = slides[i].querySelector('img');
-            if (img && img.naturalWidth && img.naturalHeight) stage.style.aspectRatio = img.naturalWidth + ' / ' + img.naturalHeight;
-        };
-        slides.forEach((s, i) => {
-            const img = s.querySelector('img');
-            if (!img) return;
-            img.addEventListener('load', () => { if (i === cur) ajustar(i); });
-        });
-        ajustar(0);
         const go = (n) => {
             slides[cur].classList.remove('is-active'); dots[cur].classList.remove('is-active');
             cur = (n + slides.length) % slides.length;
             slides[cur].classList.add('is-active'); dots[cur].classList.add('is-active');
-            ajustar(cur);
         };
         const start = () => { if (!prefersReduced && !timer) timer = setInterval(() => go(cur + 1), 4000); };
         const stop = () => { clearInterval(timer); timer = null; };
@@ -416,12 +403,14 @@ document.addEventListener("DOMContentLoaded", () => {
         ScrollTrigger.addEventListener('refreshInit', () => { rootEl.style.scrollBehavior = 'auto'; });
         ScrollTrigger.addEventListener('refresh', () => { rootEl.style.scrollBehavior = ''; });
 
-        gsap.from(".fade-in", { duration: 1.2, y: 30, opacity: 0, ease: "power3.out", delay: 0.2 });
+        // Con la clase "no-slide" el elemento solo aparece con desvanecimiento, sin subir (evita el "deslizamiento")
+        gsap.from(".fade-in:not(.no-slide)", { duration: 1.2, y: 30, opacity: 0, ease: "power3.out", delay: 0.2 });
+        gsap.from(".fade-in.no-slide", { duration: 1.2, opacity: 0, ease: "power2.out", delay: 0.2 });
 
         gsap.utils.toArray('.slide-up').forEach(element => {
             gsap.from(element, {
                 scrollTrigger: { trigger: element, start: "top 85%", toggleActions: "play none none reverse" },
-                duration: 1, y: 40, opacity: 0, ease: "power2.out"
+                duration: 1, y: element.classList.contains('no-slide') ? 0 : 40, opacity: 0, ease: "power2.out"
             });
         });
     }
