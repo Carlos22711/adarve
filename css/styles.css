@@ -421,7 +421,7 @@ fieldset.field legend { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.
     cursor: ew-resize;
 }
 .compare-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; display: block; pointer-events: none; -webkit-user-drag: none; }
-.compare.is-mismatch .compare-top { background: #ece9e5; }
+.compare.is-mismatch .compare-top { background: #fff; }
 .compare.is-mismatch .compare-before { object-fit: contain; }   /* si las dos fotos tienen proporciones muy distintas, no se deforma */
 .compare-top { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--split)) 0 0); }
 .compare-handle { position: absolute; top: 0; bottom: 0; left: var(--split); width: 48px; margin-left: -24px; display: flex; align-items: center; justify-content: center; cursor: ew-resize; outline: none; }
@@ -442,10 +442,9 @@ fieldset.field legend { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.
 .compare-item figcaption span { font-size: 0.85rem; color: #888; }
 
 /* Portada con carrusel de fotos */
-.cover-stage { position: relative; aspect-ratio: var(--cover-ratio, 4 / 3); width: 100%; max-height: 82vh; overflow: hidden; background: #ece9e5; }
+.cover-stage { position: relative; aspect-ratio: 4 / 3; width: 100%; max-height: 82vh; overflow: hidden; background: #fff; transition: aspect-ratio 0.6s ease; }
 .cover-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; }
 .cover-slide.is-active { opacity: 1; }
-.cover-slide::before { content: ""; position: absolute; inset: 0; background: var(--img) center / cover no-repeat; filter: blur(26px) saturate(1.1) brightness(0.93); transform: scale(1.2); }
 .cover-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; margin: 0; max-height: none; }
 .cover-dots { display: flex; justify-content: center; gap: 0.2rem; margin-top: 0.5rem; }
 .cover-dot { width: 28px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
