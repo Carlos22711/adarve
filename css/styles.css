@@ -295,6 +295,27 @@ body.home .navbar:not(.scrolled):not(.menu-open) .logo { opacity: 0; pointer-eve
 .about-link { display: inline-block; margin-top: 1.75rem; color: var(--acento); font-weight: 600; text-decoration: none; padding: 0.5rem 0; border-bottom: 2px solid var(--acento); }
 .about-link:hover, .about-link:focus-visible { color: var(--texto); border-bottom-color: var(--texto); outline: none; }
 
+/* Servicios en el inicio */
+.home-services { padding: 7rem 5%; background: var(--texto); color: #fff; }
+.home-services-inner { max-width: 1100px; margin: 0 auto; }
+.home-services-head { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: start; margin-bottom: 3.5rem; }
+.home-services .about-title { color: #fff; }
+.home-services-lead { font-size: 1.15rem; line-height: 1.85; font-weight: 300; color: #c9c9c9; }
+.home-service-list { list-style: none; border-top: 1px solid rgba(255,255,255,0.18); }
+.home-service { display: grid; grid-template-columns: 4.5rem 1fr auto; align-items: center; gap: 1rem; padding: 1.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.18); color: #fff; text-decoration: none; transition: padding-left 0.35s ease; }
+.hs-num { font-size: 0.85rem; font-weight: 600; letter-spacing: 3px; color: var(--acento); }
+.hs-title { display: block; font-size: clamp(1.25rem, 2.4vw, 1.75rem); font-weight: 300; letter-spacing: 0.5px; line-height: 1.25; }
+.hs-desc { display: block; margin-top: 0.4rem; font-size: 0.98rem; font-weight: 300; line-height: 1.6; color: #a9a9a9; }
+.hs-arrow { width: 26px; height: 26px; color: #8a8a8a; transition: transform 0.35s ease, color 0.35s ease; }
+.home-service:focus-visible { outline: 2px solid var(--acento); outline-offset: 4px; }
+.home-services .about-link { margin-top: 2.5rem; }
+.home-services .about-link:hover, .home-services .about-link:focus-visible { color: #fff; border-bottom-color: #fff; }
+@media (hover: hover) {
+    .home-service:hover { padding-left: 1rem; }
+    .home-service:hover .hs-arrow { color: var(--acento); transform: translateX(6px); }
+}
+.service { scroll-margin-top: calc(var(--nav-h) + 1.5rem); }
+
 /* ---------- FORMULARIO DE CONTACTO ---------- */
 .contact-intro { text-align: center; color: #666; font-size: 1.1rem; max-width: 560px; margin: -1rem auto 2.5rem; }
 .contact-form { max-width: 560px; margin: 0 auto; }
@@ -588,6 +609,11 @@ body.modal-open { overflow: hidden; }
     .about-inner { grid-template-columns: 1fr; gap: 1.5rem; }
     .about-title { font-size: 1.5rem; }
     .about-text p { font-size: 1.02rem; }
+    .home-services { padding: 4.5rem 5%; }
+    .home-services-head { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+    .home-services-lead { font-size: 1.02rem; }
+    .home-service { grid-template-columns: 2.6rem 1fr auto; padding: 1.35rem 0; gap: 0.5rem; }
+    .hs-arrow { width: 20px; height: 20px; }
     .intro { min-height: 480px; }
     .featured-projects { padding: 3.5rem 5%; }
     .project-grid { gap: 1.75rem; }
