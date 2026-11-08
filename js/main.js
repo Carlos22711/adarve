@@ -268,6 +268,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.querySelectorAll('.compare').forEach((el) => {
         const handle = el.querySelector('.compare-handle');
+
+        // Proporción real: el marco toma la medida de la foto del resultado, y la otra foto se ajusta a ese mismo tamaño
+        const imgAfter = el.querySelector('.compare-after'), imgBefore = el.querySelector('.compare-before');
+        const ajustar = () => {
+            if (!imgAfter || !imgAfter.naturalWidth || !imgAfter.naturalHeight) return;
+            const ar = imgAfter.naturalWidth / imgAfter.naturalHeight;
+            el.style.setProperty('--ar', ar.toFixed(4));
+            if (imgBefore && imgBefore.naturalWidth && imgBefore.naturalHeight) {
+                const br = imgBefore.naturalWidth / imgBefore.naturalHeight;
+                el.classList.toggle('is-mismatch', Math.abs(br - ar) / ar > 0.08);
+            }
+        };
+        [imgAfter, imgBefore].forEach((img) => { if (!img) return; if (img.complete) ajustar(); img.addEventListener('load', ajustar); });
         let split = 50, dragging = false, startX = 0, startY = 0;
 
         const setSplit = (v) => {
