@@ -487,7 +487,7 @@ fieldset.field legend { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.
 .compare-item figcaption span { font-size: 0.85rem; color: #888; }
 
 /* Portada con carrusel de fotos */
-.cover-stage { position: relative; aspect-ratio: 4 / 3; width: 100%; max-height: 82vh; overflow: hidden; background: #fff; transition: aspect-ratio 0.6s ease; }
+.cover-stage { position: relative; aspect-ratio: var(--cover-ratio, 3 / 4); width: 100%; max-height: 82vh; overflow: hidden; background: #fff; }   /* tamaño fijo: así la página no se mueve al cambiar de foto */
 .cover-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; }
 .cover-slide.is-active { opacity: 1; }
 .cover-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; margin: 0; max-height: none; }
