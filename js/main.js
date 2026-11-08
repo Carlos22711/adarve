@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ---- Cuestionarios de SERVICIOS ("Quiero este servicio") ----
-    // Preguntas del cuestionario (las mismas del formulario de Tally). Se usan en los 3 servicios.
+    // Preguntas del cuestionario (las mismas del formulario de Tally). Se usan en los 5 servicios.
     // Edita aquí: type = text | select | textarea | checks ; required: true las vuelve obligatorias
     const PREGUNTAS = [
         { id: 'nombre', label: 'Nombre', type: 'text', required: true, autocomplete: 'name' },
@@ -152,9 +152,11 @@ document.addEventListener("DOMContentLoaded", () => {
         { id: 'inicio', label: '¿Cuándo te gustaría iniciar?', type: 'text', optional: true, placeholder: 'Ej. enero 2027' }
     ];
     const SERVICES = {
-        diseno: { nombre: 'Diseño Arquitectónico Integral', campos: PREGUNTAS },
-        interiorismo: { nombre: 'Interiorismo y Remodelación Comercial', campos: PREGUNTAS },
-        supervision: { nombre: 'Supervisión y Dirección de Obra', campos: PREGUNTAS }
+        llave: { nombre: 'Paquete integral llave en mano', campos: PREGUNTAS },
+        diseno: { nombre: 'Diseño Arquitectónico', campos: PREGUNTAS },
+        construccion: { nombre: 'Construcción', campos: PREGUNTAS },
+        supervision: { nombre: 'Supervisión de obra', campos: PREGUNTAS },
+        tramites: { nombre: 'Trámites y permisos', campos: PREGUNTAS }
     };
 
     const dialog = document.getElementById('serviceDialog');
