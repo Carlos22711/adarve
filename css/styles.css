@@ -388,11 +388,15 @@ fieldset.field legend { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.
 /* ---------- PÁGINA DE PROYECTO (nuevo formato) ---------- */
 .content-section.project { max-width: 1200px; }
 .project-hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: center; }
-.project-hero h1 { font-size: clamp(2rem, 4.2vw, 3.2rem); font-weight: 300; letter-spacing: 1px; line-height: 1.15; }
-.project-lead { margin-top: 1.25rem; font-size: 1.2rem; line-height: 1.7; color: #555; max-width: 520px; }
-.project-facts { display: flex; flex-wrap: wrap; gap: 1.25rem 2.5rem; margin-top: 2.25rem; padding-top: 1.5rem; border-top: 1px solid var(--gris-claro); }
-.project-facts dt { font-size: 0.8rem; color: #777; margin-bottom: 0.15rem; }
-.project-facts dd { font-size: 1rem; font-weight: 600; }
+.project-hero h1 { font-size: clamp(2.3rem, 4.8vw, 3.6rem); font-weight: 200; letter-spacing: 1.5px; line-height: 1.08; color: var(--texto); }
+.project-eyebrow { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.1rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--acento); }
+.project-eyebrow::before { content: ""; width: 42px; height: 1px; background: var(--acento); }
+.project-lead { margin-top: 1.5rem; font-size: 1.12rem; font-weight: 300; line-height: 1.8; color: #5a5a5a; max-width: 500px; }
+.project-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; margin-top: 2.5rem; border-top: 1px solid var(--gris-claro); border-bottom: 1px solid var(--gris-claro); }
+.project-facts > div { padding: 1.25rem 1.25rem 1.25rem 0; }
+.project-facts > div + div { padding-left: 1.25rem; border-left: 1px solid var(--gris-claro); }
+.project-facts dt { font-size: 0.68rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #8a8a8a; margin-bottom: 0.45rem; }
+.project-facts dd { font-size: 1.1rem; font-weight: 300; line-height: 1.35; color: var(--texto); }
 .project-cover { margin: 0; }
 .project-cover img { display: block; width: 100%; height: auto; max-height: 82vh; object-fit: contain; margin: 0 auto; }
 
@@ -406,17 +410,19 @@ fieldset.field legend { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.
 .compare {
     --split: 50%;
     position: relative;
-    aspect-ratio: var(--ratio, 4 / 3);
-    max-height: 84vh;                  /* nunca más alto que la pantalla */
+    aspect-ratio: var(--ar, 16 / 9);   /* la proporción real la calcula main.js con la foto del resultado */
+    width: 100%;
+    max-width: min(100%, calc(82vh * var(--ar, 1.7778)));   /* si la foto es vertical, nunca es más alta que la pantalla */
+    margin-inline: auto;
     overflow: hidden;
-    background: #d9d9d9;
+    background: #ece9e5;
     touch-action: pan-y;               /* el dedo desliza la barra en horizontal; en vertical sigue haciendo scroll */
     user-select: none; -webkit-user-select: none;
     cursor: ew-resize;
 }
-.compare-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; -webkit-user-drag: none; }
-.compare-after { object-position: var(--pos-after, 50% 50%); }
-.compare-before { object-position: var(--pos-before, 50% 50%); }
+.compare-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; display: block; pointer-events: none; -webkit-user-drag: none; }
+.compare.is-mismatch .compare-top { background: #ece9e5; }
+.compare.is-mismatch .compare-before { object-fit: contain; }   /* si las dos fotos tienen proporciones muy distintas, no se deforma */
 .compare-top { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--split)) 0 0); }
 .compare-handle { position: absolute; top: 0; bottom: 0; left: var(--split); width: 48px; margin-left: -24px; display: flex; align-items: center; justify-content: center; cursor: ew-resize; outline: none; }
 .compare-handle::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
@@ -436,9 +442,11 @@ fieldset.field legend { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.
 .compare-item figcaption span { font-size: 0.85rem; color: #888; }
 
 /* Portada con carrusel de fotos */
-.cover-stage { position: relative; aspect-ratio: var(--cover-ratio, 4 / 3); max-height: 82vh; width: 100%; overflow: hidden; background: #e6e3df; }
-.cover-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease; }
+.cover-stage { position: relative; aspect-ratio: var(--cover-ratio, 4 / 3); width: 100%; max-height: 82vh; overflow: hidden; background: #ece9e5; }
+.cover-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; }
 .cover-slide.is-active { opacity: 1; }
+.cover-slide::before { content: ""; position: absolute; inset: 0; background: var(--img) center / cover no-repeat; filter: blur(26px) saturate(1.1) brightness(0.93); transform: scale(1.2); }
+.cover-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; margin: 0; max-height: none; }
 .cover-dots { display: flex; justify-content: center; gap: 0.2rem; margin-top: 0.5rem; }
 .cover-dot { width: 28px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
 .cover-dot::after { content: ""; position: absolute; left: 50%; top: 50%; width: 22px; height: 3px; margin: -1.5px 0 0 -11px; background: #cfcac4; transition: background 0.3s; }
@@ -493,7 +501,8 @@ body.modal-open { overflow: hidden; }
     .details { grid-template-columns: 1fr; }
 }
 @media screen and (max-width: 768px) {
-    .compare { aspect-ratio: var(--ratio-m, var(--ratio, 4 / 3)); max-height: none; }
+    .project-facts { grid-template-columns: 1fr 1fr; }
+    .project-facts > div:nth-child(3) { grid-column: 1 / -1; padding-left: 0; border-left: 0; border-top: 1px solid var(--gris-claro); }
     .project-section { margin-top: 4rem; }
     .shots { columns: 1; }
     .section-intro, .prose-block, .details { margin-left: 0; }
