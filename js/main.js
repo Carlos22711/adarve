@@ -380,6 +380,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!reduce && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
+        // Evita que la página "se deslice sola al inicio": ScrollTrigger recalcula posiciones
+        // (al volver a la pestaña/app, rotar el celular o terminar de cargar) y, con
+        // scroll-behavior: smooth, ese recálculo se veía como un salto animado hacia arriba.
+        ScrollTrigger.config({ ignoreMobileResize: true });
+        const rootEl = document.documentElement;
+        ScrollTrigger.addEventListener('refreshInit', () => { rootEl.style.scrollBehavior = 'auto'; });
+        ScrollTrigger.addEventListener('refresh', () => { rootEl.style.scrollBehavior = ''; });
+
         gsap.from(".fade-in", { duration: 1.2, y: 30, opacity: 0, ease: "power3.out", delay: 0.2 });
 
         gsap.utils.toArray('.slide-up').forEach(element => {
