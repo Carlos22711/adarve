@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+// Direcciones limpias: si alguien entra con ".html", la barra del navegador muestra la versión sin ".html"
+if (/^https?:$/.test(location.protocol) && /\.html$/.test(location.pathname)) {
+    const limpia = location.pathname.replace(/index\.html$/, '').replace(/\.html$/, '') || '/';
+    history.replaceState(null, '', limpia + location.search + location.hash);
+}
+
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
 
@@ -32,10 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('resize', () => { if (window.innerWidth > 768) setMenu(false); });
 
         // marcar la página actual en el menú
-        const current = location.pathname.split('/').pop() || 'index.html';
+        const limpia = (p) => p.replace(/index\.html$/, '').replace(/\.html$/, '').replace(/\/+$/, '') || '/';
+        const current = limpia(location.pathname);
         navMenu.querySelectorAll('a').forEach(link => {
-            const href = link.getAttribute('href').split('/').pop();
-            if (href === current) link.setAttribute('aria-current', 'page');
+            const target = limpia(new URL(link.getAttribute('href'), location.href).pathname);
+            if (target === current) link.setAttribute('aria-current', 'page');
         });
     }
 
